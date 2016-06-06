@@ -20,6 +20,11 @@ module InquiryBot
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
+    # キャッシュにredisを使用する
+    config.cache_store = :redis_store, "redis://127.0.0.1:6379/0/inquiry_bot", { expires_in: 90.minutes }
+    # config.cache_store = :memory_store, { size: 64.megabytes, :expires_in => 3.minutes }
+
+
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
   end
