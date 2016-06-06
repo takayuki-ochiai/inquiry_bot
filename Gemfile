@@ -1,10 +1,35 @@
 source 'https://rubygems.org'
 
+# 初期データ投入用
+gem 'seed-fu'
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.3'
+# Use MySQL
+gem 'mysql2', '~> 0.3.17'
+
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+# gem 'sqlite3'
+
+# Use slim
+gem 'slim-rails'
+
+# api
+gem 'grape'
+gem 'grape-entity'
+gem 'api-pagination'
+
+# api response
+gem 'active_model_serializers'
+
+# batch いらないかもだが一応
+gem 'whenever', :require => false
+
+# cache いらないと思うが一応
+gem 'redis'
+gem 'redis-rails'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -32,6 +57,16 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+group :test do
+  gem "faker", "~> 1.4.3"
+  gem "capybara", "~> 2.4.3"
+  gem "database_cleaner", "~> 1.3.0"
+  gem "launchy", "~> 2.4.2"
+  gem "selenium-webdriver", "~> 2.43.0"
+end
+
+# Use Capistrano for deployment
+# gem 'capistrano-rails', group: :development
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -41,5 +76,13 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-end
 
+  #デバッグ用のpry
+  gem 'pry'
+  gem 'pry-doc'
+  gem 'pry-rails'
+
+  #rspecテスト用
+  gem "rspec-rails", "~> 3.1.0"
+  gem "factory_girl_rails", "~> 4.4.1"
+end
