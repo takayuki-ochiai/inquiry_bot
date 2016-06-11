@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # 初期データ投入用
-gem 'seed-fu'
+# gem 'seed-fu'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
