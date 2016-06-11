@@ -5,3 +5,12 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+require "csv"
+
+CSV.foreach('db/fixtures/development/answers.csv') do |row|
+  Answer.create(
+    question_header: row[0],
+    content: row[1]
+  )
+end
