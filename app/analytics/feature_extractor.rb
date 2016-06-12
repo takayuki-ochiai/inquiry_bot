@@ -4,6 +4,9 @@ require 'open3'
 class FeatureExtractor
   # 全質問文と回答文の内容から辞書を作成する
   def create_dictionary
-    out, err, status = Open3.capture3("python app/analytics/dictionary.py", stdin_data: "振り込みの書類が見つからないのですがどこですか,引落しにつかう口座を変えたいです")
+    answer_contents = Answer.pluck(:content).join(',')
+    question_contents = Question.pluck(:content).join(',')
+    texts = "#{answer_contents},#{question_contents}"
+    out, err, status = Open3.capture3("python app/analytics/dictionary.py", stdin_data: texts)
   end
 end

@@ -24,7 +24,6 @@ def tokenize(text):
 # mapとfilter関数はPython2とPython3で挙動が違うので超注意
 words = list(map(tokenize, texts))
 
-text = "ライトノベルに関する記事を書くために過去の記事を参考にしようとしてインターネットでライトノベルについて検索する"
 # pdb.set_trace()
 dictionary = corpora.Dictionary(words)
-print(dictionary.token2id)
+dictionary.save_as_text('app/analytics/dictionary.txt')
