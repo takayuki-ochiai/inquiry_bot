@@ -9,4 +9,35 @@ class FeatureExtractor
     texts = "#{answer_contents},#{question_contents}"
     out, err, status = Open3.capture3("python app/analytics/dictionary.py", stdin_data: texts)
   end
+
+  # ランダムフォレストを用いた多クラス分類を用いて機械学習
+  def learn_with_random_forest
+
+    answer_id_and_content = Question.pluck(:answer_id, :content)
+    answer_id_and_content.map{|array| array[0].to_s}.join(',')
+    answer_id_and_content.map{|array| array[1]}.join(',')
+
+    # カンマ区切り文字列として渡す
+    Open3.popen3("python app/analytics/random_forest.py") { |stdin, stdout, stderr, wait_thr|
+      stdin.puts answer_id_and_content.map{|array| array[0].to_s}.join(',')
+      stdin.puts answer_id_and_content.map{|array| array[1]}.join(',')
+      stdin.close
+      puts stdout.read
+      puts stderr.read
+    }
+
+    # out, err, status = Open3.capture3("python app/analytics/random_forest.py", stdin_data: answer_id_content_hash.to_json.to_s)
+  end
+
+  # 回答IDごとの設問の内容をすべて連結したハッシュを作成する
+  # この方法は別で使う
+  # ハッシュをJSON化してシリアライズしてPythonに渡して機械学習する
+  # answer_id_content_hash = Question.pluck(:answer_id, :content).reduce({}) do |result, array|
+  #   if result.has_key?(array[0])
+  #     result[array[0]] = result[array[0]] + array[1]
+  #   else
+  #     result[array[0]] = array[1]
+  #   end
+  #   result
+  # end
 end
