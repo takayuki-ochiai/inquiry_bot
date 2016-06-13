@@ -1,9 +1,5 @@
-import pdb
-import MeCab
 import sys
 from gensim import corpora, matutils, models
-import pickle
-import json
 from morphological_analyze import morphological_analyze
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.cross_validation import train_test_split
