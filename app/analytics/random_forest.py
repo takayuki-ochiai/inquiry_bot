@@ -5,38 +5,27 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.cross_validation import train_test_split
 from sklearn.grid_search import GridSearchCV
 import numpy as np
+from sklearn.feature_extraction.text import TfidfVectorizer
 
 dictionary = corpora.Dictionary.load_from_text('app/analytics/dictionary.txt')
 
-# 正解の回答IDの配列
+# # 正解の回答IDの配列
 label_train = sys.stdin.readline().split(",")
+question_train = sys.stdin.readline().split(",")
 
-# 各質問中の名詞、動詞、形容詞、形容動詞が入っている配列in配列
-words_train = list(map(morphological_analyze, sys.stdin.readline().split(",")))
+# # 各質問中の名詞、動詞、形容詞、形容動詞が入っている配列in配列
+# words_train = list(map(morphological_analyze, question_train))
+# bow_train = list(map(dictionary.doc2bow, words_train))
+# # # 各質問毎の特徴ベクトルの配列in配列を生成する
+# vector_train = []
+# for bow in bow_train:
+#     dense = list(matutils.corpus2dense([bow], num_terms=len(dictionary)).T[0])
+#     vector_train.append(dense)
 
-bow_corpus = list(map(dictionary.doc2bow, words_train))
-# corpora.MmCorpus.serialize('app/analytics/random_forest_bow_copus.mm', bow_corpus)
-
-# 次元を300まで削減した特徴ベクトルの配列を作る
-# 0 が3×3の2次元配列を生成
-# 正答率がwwwwww20%台までwwwwww下がったwwwwww草不可避wwwww
-# topic_num = 500
-# lda = models.LdaModel(bow_corpus, id2word=dictionary, num_topics=topic_num)
-# vector_train = [[0] * topic_num for i in range(len(label_train))]
-# for index, topics_per_document in enumerate(lda[bow_corpus]):
-#     print(topics_per_document)
-#     for topic in topics_per_document:
-#         vector_train[index][topic[0]] = topic[1]
-# for vector in vector_train:
-#     print(vector)
-
-bow_train = list(map(dictionary.doc2bow, words_train))
-#
-# # 各質問毎の特徴ベクトルの配列in配列を生成する
-vector_train = []
-for bow in bow_train:
-    dense = list(matutils.corpus2dense([bow], num_terms=len(dictionary)).T[0])
-    vector_train.append(dense)
+# tf-idf化
+#The defaults for min_df and max_df are 1 and 1.0, respectively. This basically says "If my term is found in only 1 document, then it's ignored. Similarly if it's found in all documents (100% or 1.0) then it's ignored."
+vectorizer = TfidfVectorizer(analyzer=morphological_analyze, max_features=300)
+vector_train = vectorizer.fit_transform(question_train)
 
 # パラメーターの最適地を探す
 # tuned_parameters = [{'n_estimators': [10, 30, 50, 70, 90, 110, 130, 150], 'max_features': ['auto', 'sqrt', 'log2', None]}]

@@ -4,25 +4,29 @@ from morphological_analyze import morphological_analyze
 from sklearn.svm import LinearSVC
 from sklearn.cross_validation import train_test_split
 from sklearn.grid_search import GridSearchCV
+from sklearn.feature_extraction.text import TfidfVectorizer
 import numpy as np
 
 dictionary = corpora.Dictionary.load_from_text('app/analytics/dictionary.txt')
 
 # 正解の回答IDの配列
 label_train = sys.stdin.readline().split(",")
+question_train = sys.stdin.readline().split(",")
 
 # 各質問中の名詞、動詞、形容詞、形容動詞が入っている配列in配列
-words_train = list(map(morphological_analyze, sys.stdin.readline().split(",")))
-
-bow_corpus = list(map(dictionary.doc2bow, words_train))
-
+words_train = list(map(morphological_analyze, question_train))
 bow_train = list(map(dictionary.doc2bow, words_train))
-#
-# # 各質問毎の特徴ベクトルの配列in配列を生成する
+
+# 各質問毎の特徴ベクトルの配列in配列を生成する
 vector_train = []
 for bow in bow_train:
     dense = list(matutils.corpus2dense([bow], num_terms=len(dictionary)).T[0])
     vector_train.append(dense)
+
+# tf-idf化
+#The defaults for min_df and max_df are 1 and 1.0, respectively. This basically says "If my term is found in only 1 document, then it's ignored. Similarly if it's found in all documents (100% or 1.0) then it's ignored."
+# vectorizer = TfidfVectorizer(analyzer=morphological_analyze, max_features=300)
+# vector_train = vectorizer.fit_transform(question_train)
 
 # チューニングパラメーター
 # vector_train_s, vector_test_s, label_train_s, label_test_s = train_test_split(vector_train, label_train, test_size=0.2)

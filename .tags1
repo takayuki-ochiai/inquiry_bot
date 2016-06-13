@@ -12,18 +12,19 @@ morphological_analyze	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analyti
 LinearSVC	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^from sklearn.svm import LinearSVC$/;"	namespace	line:4
 train_test_split	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^from sklearn.cross_validation import train_test_split$/;"	namespace	line:5
 GridSearchCV	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^from sklearn.grid_search import GridSearchCV$/;"	namespace	line:6
-np	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^import numpy as np$/;"	namespace	line:7
-dictionary	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^dictionary = corpora.Dictionary.load_from_text('app\/analytics\/dictionary.txt')$/;"	variable	line:9
-label_train	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^label_train = sys.stdin.readline().split(",")$/;"	variable	line:12
-words_train	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^words_train = list(map(morphological_analyze, sys.stdin.readline().split(",")))$/;"	variable	line:15
-bow_corpus	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^bow_corpus = list(map(dictionary.doc2bow, words_train))$/;"	variable	line:17
-bow_train	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^bow_train = list(map(dictionary.doc2bow, words_train))$/;"	variable	line:19
-vector_train	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^vector_train = []$/;"	variable	line:22
-dense	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^    dense = list(matutils.corpus2dense([bow], num_terms=len(dictionary)).T[0])$/;"	variable	line:24
-accuracy_training_rates	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^accuracy_training_rates = []$/;"	variable	line:50
-accuracy_rates	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^accuracy_rates = []$/;"	variable	line:51
-estimator	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^    estimator = LinearSVC()$/;"	variable	line:55
-test_average	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^    test_average = estimator.score(vector_test_s, label_test_s)$/;"	variable	line:59
-training_average	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^    training_average = estimator.score(vector_train_s, label_train_s)$/;"	variable	line:60
-data	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^data = np.array(accuracy_rates)$/;"	variable	line:67
-train_data	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^train_data = np.array(accuracy_training_rates)$/;"	variable	line:73
+TfidfVectorizer	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^from sklearn.feature_extraction.text import TfidfVectorizer$/;"	namespace	line:7
+np	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^import numpy as np$/;"	namespace	line:8
+dictionary	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^dictionary = corpora.Dictionary.load_from_text('app\/analytics\/dictionary.txt')$/;"	variable	line:10
+label_train	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^label_train = sys.stdin.readline().split(",")$/;"	variable	line:13
+question_train	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^question_train = sys.stdin.readline().split(",")$/;"	variable	line:14
+words_train	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^words_train = list(map(morphological_analyze, question_train))$/;"	variable	line:17
+bow_train	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^bow_train = list(map(dictionary.doc2bow, words_train))$/;"	variable	line:18
+vector_train	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^vector_train = []$/;"	variable	line:21
+dense	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^    dense = list(matutils.corpus2dense([bow], num_terms=len(dictionary)).T[0])$/;"	variable	line:23
+accuracy_training_rates	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^accuracy_training_rates = []$/;"	variable	line:54
+accuracy_rates	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^accuracy_rates = []$/;"	variable	line:55
+estimator	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^    estimator = LinearSVC()$/;"	variable	line:59
+test_average	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^    test_average = estimator.score(vector_test_s, label_test_s)$/;"	variable	line:63
+training_average	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^    training_average = estimator.score(vector_train_s, label_train_s)$/;"	variable	line:64
+data	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^data = np.array(accuracy_rates)$/;"	variable	line:71
+train_data	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^train_data = np.array(accuracy_training_rates)$/;"	variable	line:77
