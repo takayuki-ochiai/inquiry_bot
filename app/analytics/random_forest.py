@@ -8,6 +8,7 @@ from morphological_analyze import morphological_analyze
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.cross_validation import train_test_split
 from sklearn.grid_search import GridSearchCV
+import numpy as np
 
 dictionary = corpora.Dictionary.load_from_text('app/analytics/dictionary.txt')
 
@@ -59,17 +60,28 @@ for bow in bow_train:
 # print(classification_report(y_true, y_pred))
 
 
-# 7割を学習用、 3割を試験用にするテストを10回実行して正解率の平均値を算出する
-# ランダムフォレストのパラメータは調整が必要
+# 8割を学習用、 2割を試験用にするテストを10回実行して正解率の平均値を算出する
+accuracy_training_rates = []
 accuracy_rates = []
-for var in range(0, 200):
-    vector_train_s, vector_test_s, label_train_s, label_test_s = train_test_split(vector_train, label_train, test_size=0.05)
-    estimator = RandomForestClassifier(n_estimators=90, max_features='sqrt')
+for var in range(0, 100):
+    vector_train_s, vector_test_s, label_train_s, label_test_s = train_test_split(vector_train, label_train, test_size=0.2)
+    estimator = RandomForestClassifier(n_estimators=40, max_features='sqrt')
     # 学習用に切り出したやつだけで学習
     estimator.fit(vector_train_s, label_train_s)
-    average = estimator.score(vector_test_s, label_test_s)
-    print(average)
-    accuracy_rates.append(average)
 
-print("平均値")
+    test_average = estimator.score(vector_test_s, label_test_s)
+    training_average = estimator.score(vector_train_s, label_train_s)
+    accuracy_training_rates.append(training_average)
+    accuracy_rates.append(test_average)
+
+print("テストセット正解率平均値")
 print(sum(accuracy_rates)/len(accuracy_rates))
+print("テストセット正解率標準偏差")
+data = np.array(accuracy_rates)
+print(str(np.std(data)))
+
+print("トレーニングセット正解率平均値")
+print(sum(accuracy_training_rates)/len(accuracy_training_rates))
+print("トレーニングセット正解率標準偏差")
+train_data = np.array(accuracy_training_rates)
+print(str(np.std(train_data)))
