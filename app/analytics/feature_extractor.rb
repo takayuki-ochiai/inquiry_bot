@@ -29,6 +29,41 @@ class FeatureExtractor
     # out, err, status = Open3.capture3("python app/analytics/random_forest.py", stdin_data: answer_id_content_hash.to_json.to_s)
   end
 
+  def learn_with_linear_svc
+    answer_id_and_content = Question.pluck(:answer_id, :content)
+    answer_id_and_content.map{|array| array[0].to_s}.join(',')
+    answer_id_and_content.map{|array| array[1]}.join(',')
+
+    # カンマ区切り文字列として渡す
+    Open3.popen3("python app/analytics/linear_svc.py") { |stdin, stdout, stderr, wait_thr|
+      stdin.puts answer_id_and_content.map{|array| array[0].to_s}.join(',')
+      stdin.puts answer_id_and_content.map{|array| array[1]}.join(',')
+      stdin.close
+      puts stdout.read
+      puts stderr.read
+    }
+
+    # out, err, status = Open3.capture3("python app/analytics/random_forest.py", stdin_data: answer_id_content_hash.to_json.to_s)
+  end
+
+
+
+  # ldaを用いた機械学習
+  def learn_with_lda
+    answer_id_and_content = Question.pluck(:answer_id, :content)
+    answer_id_and_content.map{|array| array[0].to_s}.join(',')
+    answer_id_and_content.map{|array| array[1]}.join(',')
+
+    # カンマ区切り文字列として渡す
+    Open3.popen3("python app/analytics/lda.py") { |stdin, stdout, stderr, wait_thr|
+      stdin.puts answer_id_and_content.map{|array| array[0].to_s}.join(',')
+      stdin.puts answer_id_and_content.map{|array| array[1]}.join(',')
+      stdin.close
+      puts stdout.read
+      puts stderr.read
+    }
+  end
+
   # 回答IDごとの設問の内容をすべて連結したハッシュを作成する
   # この方法は別で使う
   # ハッシュをJSON化してシリアライズしてPythonに渡して機械学習する
