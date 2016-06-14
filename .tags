@@ -1,9 +1,3 @@
-FeatureExtractor	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/feature_extractor.rb	/^class FeatureExtractor$/;"	class	line:4
-create_dictionary	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/feature_extractor.rb	/^  def create_dictionary$/;"	method	line:6	class:FeatureExtractor
-learn_with_random_forest	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/feature_extractor.rb	/^  def learn_with_random_forest$/;"	method	line:14	class:FeatureExtractor
-learn_with_linear_svc	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/feature_extractor.rb	/^  def learn_with_linear_svc$/;"	method	line:29
-learn_with_naive_bayes	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/feature_extractor.rb	/^  def learn_with_naive_bayes$/;"	method	line:44
-learn_with_lda	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/feature_extractor.rb	/^  def learn_with_lda$/;"	method	line:62
 sys	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/lda.py	/^import sys$/;"	namespace	line:1
 corpora	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/lda.py	/^from gensim import corpora, matutils, models$/;"	namespace	line:2
 matutils	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/lda.py	/^from gensim import corpora, matutils, models$/;"	namespace	line:2
@@ -50,25 +44,6 @@ test_average	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/naive_
 training_average	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/naive_bayes.py	/^    training_average = estimator.score(vector_train_s, label_train_s)$/;"	variable	line:60
 data	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/naive_bayes.py	/^data = np.array(accuracy_rates)$/;"	variable	line:67
 train_data	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/naive_bayes.py	/^train_data = np.array(accuracy_training_rates)$/;"	variable	line:73
-sys	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^import sys$/;"	namespace	line:1
-corpora	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^from gensim import corpora, matutils, models$/;"	namespace	line:2
-matutils	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^from gensim import corpora, matutils, models$/;"	namespace	line:2
-models	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^from gensim import corpora, matutils, models$/;"	namespace	line:2
-morphological_analyze	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^from morphological_analyze import morphological_analyze$/;"	namespace	line:3
-LinearSVC	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^from sklearn.svm import LinearSVC$/;"	namespace	line:4
-cross_validation	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^from sklearn import cross_validation$/;"	namespace	line:5
-GridSearchCV	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^from sklearn.grid_search import GridSearchCV$/;"	namespace	line:6
-TfidfVectorizer	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^from sklearn.feature_extraction.text import TfidfVectorizer$/;"	namespace	line:7
-np	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^import numpy as np$/;"	namespace	line:8
-dictionary	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^dictionary = corpora.Dictionary.load_from_text('app\/analytics\/dictionary.txt')$/;"	variable	line:10
-label_train	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^label_train = sys.stdin.readline().split(",")$/;"	variable	line:13
-question_train	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^question_train = sys.stdin.readline().split(",")$/;"	variable	line:14
-words_train	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^words_train = list(map(morphological_analyze, question_train))$/;"	variable	line:17
-bow_train	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^bow_train = list(map(dictionary.doc2bow, words_train))$/;"	variable	line:18
-vector_train	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^vector_train = []$/;"	variable	line:21
-dense	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^    dense = list(matutils.corpus2dense([bow], num_terms=len(dictionary)).T[0])$/;"	variable	line:23
-estimator	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^estimator = LinearSVC()$/;"	variable	line:53
-scores	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^scores = cross_validation.cross_val_score(estimator, vector_train, label_train, cv=5)$/;"	variable	line:54
 sys	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/random_forest.py	/^import sys$/;"	namespace	line:1
 corpora	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/random_forest.py	/^from gensim import corpora, matutils, models$/;"	namespace	line:2
 matutils	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/random_forest.py	/^from gensim import corpora, matutils, models$/;"	namespace	line:2
@@ -86,3 +61,42 @@ vectorizer	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/random_f
 vector_train	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/random_forest.py	/^vector_train = vectorizer.fit_transform(question_train)$/;"	variable	line:28
 estimator	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/random_forest.py	/^estimator = RandomForestClassifier(n_estimators=40, max_features='sqrt')$/;"	variable	line:46
 scores	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/random_forest.py	/^scores = cross_validation.cross_val_score(estimator, vector_train, label_train, cv=5)$/;"	variable	line:47
+sys	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^import sys$/;"	namespace	line:1
+corpora	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^from gensim import corpora, matutils, models$/;"	namespace	line:2
+matutils	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^from gensim import corpora, matutils, models$/;"	namespace	line:2
+models	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^from gensim import corpora, matutils, models$/;"	namespace	line:2
+morphological_analyze	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^from morphological_analyze import morphological_analyze$/;"	namespace	line:3
+LinearSVC	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^from sklearn.svm import LinearSVC$/;"	namespace	line:4
+cross_validation	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^from sklearn import cross_validation$/;"	namespace	line:5
+GridSearchCV	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^from sklearn.grid_search import GridSearchCV$/;"	namespace	line:6
+TfidfVectorizer	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^from sklearn.feature_extraction.text import TfidfVectorizer$/;"	namespace	line:7
+np	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^import numpy as np$/;"	namespace	line:8
+dictionary	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^dictionary = corpora.Dictionary.load_from_text('app\/analytics\/dictionary.txt')$/;"	variable	line:10
+label_train	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^label_train = sys.stdin.readline().rstrip().split(",")$/;"	variable	line:13
+question_train	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^question_train = sys.stdin.readline().rstrip().split(",")$/;"	variable	line:14
+words_train	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^words_train = list(map(morphological_analyze, question_train))$/;"	variable	line:17
+bow_train	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^bow_train = list(map(dictionary.doc2bow, words_train))$/;"	variable	line:18
+vector_train	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^vector_train = []$/;"	variable	line:21
+dense	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^    dense = list(matutils.corpus2dense([bow], num_terms=len(dictionary)).T[0])$/;"	variable	line:23
+estimator	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^estimator = LinearSVC()$/;"	variable	line:53
+scores	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/linear_svc.py	/^scores = cross_validation.cross_val_score(estimator, vector_train, label_train, cv=5)$/;"	variable	line:54
+sys	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/predict_questions.py	/^import sys$/;"	namespace	line:1
+corpora	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/predict_questions.py	/^from gensim import corpora, matutils, models$/;"	namespace	line:2
+matutils	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/predict_questions.py	/^from gensim import corpora, matutils, models$/;"	namespace	line:2
+models	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/predict_questions.py	/^from gensim import corpora, matutils, models$/;"	namespace	line:2
+morphological_analyze	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/predict_questions.py	/^from morphological_analyze import morphological_analyze$/;"	namespace	line:3
+LinearSVC	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/predict_questions.py	/^from sklearn.svm import LinearSVC$/;"	namespace	line:4
+cross_validation	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/predict_questions.py	/^from sklearn import cross_validation$/;"	namespace	line:5
+GridSearchCV	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/predict_questions.py	/^from sklearn.grid_search import GridSearchCV$/;"	namespace	line:6
+TfidfVectorizer	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/predict_questions.py	/^from sklearn.feature_extraction.text import TfidfVectorizer$/;"	namespace	line:7
+np	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/predict_questions.py	/^import numpy as np$/;"	namespace	line:8
+json	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/predict_questions.py	/^import json$/;"	namespace	line:9
+cosine_similarity	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/predict_questions.py	/^from sklearn.metrics.pairwise import cosine_similarity$/;"	namespace	line:11
+predict_questions	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/predict_questions.py	/^def predict_questions():$/;"	function	line:13
+FeatureExtractor	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/feature_extractor.rb	/^class FeatureExtractor$/;"	class	line:4
+create_dictionary	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/feature_extractor.rb	/^  def create_dictionary$/;"	method	line:6	class:FeatureExtractor
+learn_with_random_forest	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/feature_extractor.rb	/^  def learn_with_random_forest$/;"	method	line:14	class:FeatureExtractor
+learn_with_linear_svc	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/feature_extractor.rb	/^  def learn_with_linear_svc$/;"	method	line:29
+learn_with_naive_bayes	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/feature_extractor.rb	/^  def learn_with_naive_bayes$/;"	method	line:44
+learn_with_lda	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/feature_extractor.rb	/^  def learn_with_lda$/;"	method	line:62
+predict_questions	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/feature_extractor.rb	/^  def predict_questions(text)$/;"	method	line:78

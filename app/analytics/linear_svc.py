@@ -10,8 +10,8 @@ import numpy as np
 dictionary = corpora.Dictionary.load_from_text('app/analytics/dictionary.txt')
 
 # 正解の回答IDの配列
-label_train = sys.stdin.readline().split(",")
-question_train = sys.stdin.readline().split(",")
+label_train = sys.stdin.readline().rstrip().split(",")
+question_train = sys.stdin.readline().rstrip().split(",")
 
 # 各質問中の名詞、動詞、形容詞、形容動詞が入っている配列in配列
 words_train = list(map(morphological_analyze, question_train))
@@ -53,7 +53,8 @@ for bow in bow_train:
 estimator = LinearSVC()
 scores = cross_validation.cross_val_score(estimator, vector_train, label_train, cv=5)
 print("Accuracy: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
-
+# estimator.fit(vector_train, label_train)
+# estimator.predict(X)
 
 # accuracy_training_rates = []
 # accuracy_rates = []

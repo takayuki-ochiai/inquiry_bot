@@ -74,17 +74,29 @@ class FeatureExtractor
     end
   end
 
+  # 入力されたテキストから類似度の高い質問を検索して質問候補として出力します
+  def predict_questions(text)
+    # 回答IDごとの設問の内容をすべて連結したハッシュを作成する
+    # この方法は別で使う
+    # ハッシュをJSON化してシリアライズしてPythonに渡して機械学習する
+    answer_id_content_hash = Question.pluck(:answer_id, :content).reduce({}) do |result, array|
+      if result.has_key?(array[0])
+        result[array[0]] = result[array[0]] + array[1]
+      else
+        result[array[0]] = array[1]
+      end
+      result
+    end
 
+    answer_ids = Open3.popen3("python app/analytics/predict_questions.py") do |stdin, stdout, stderr, wait_thr|
+      # Rubyのハッシュのkeysとvaluesは要素の順序が保持される
+      stdin.puts answer_id_content_hash.keys.join(',')
+      stdin.puts answer_id_content_hash.values.join(',')
+      stdin.puts text
+      stdin.close
+      stdout.read.split(',')
+    end
 
-  # 回答IDごとの設問の内容をすべて連結したハッシュを作成する
-  # この方法は別で使う
-  # ハッシュをJSON化してシリアライズしてPythonに渡して機械学習する
-  # answer_id_content_hash = Question.pluck(:answer_id, :content).reduce({}) do |result, array|
-  #   if result.has_key?(array[0])
-  #     result[array[0]] = result[array[0]] + array[1]
-  #   else
-  #     result[array[0]] = array[1]
-  #   end
-  #   result
-  # end
+    return answer_ids
+  end
 end
