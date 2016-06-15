@@ -4,11 +4,6 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
-FeatureExtractor	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/feature_extractor.rb	/^class FeatureExtractor$/;"	class	line:4
-create_dictionary	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/feature_extractor.rb	/^  def create_dictionary$/;"	method	line:6	class:FeatureExtractor
-learn_with_random_forest	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/feature_extractor.rb	/^  def learn_with_random_forest$/;"	method	line:14	class:FeatureExtractor
-learn_with_linear_svc	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/feature_extractor.rb	/^  def learn_with_linear_svc$/;"	method	line:29
-learn_with_naive_bayes	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/feature_extractor.rb	/^  def learn_with_naive_bayes$/;"	method	line:44
-learn_with_lda	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/feature_extractor.rb	/^  def learn_with_lda$/;"	method	line:62
-predict_question_tags	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/feature_extractor.rb	/^  def predict_question_tags$/;"	method	line:78
-predict_questions	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/feature_extractor.rb	/^  def predict_questions(text)$/;"	method	line:103
+Predictor	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/predictor.rb	/^class Predictor$/;"	class	line:4
+initialize	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/predictor.rb	/^  def initialize(text)$/;"	method	line:6	class:Predictor
+predict	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/predictor.rb	/^  def predict$/;"	method	line:10	class:Predictor
