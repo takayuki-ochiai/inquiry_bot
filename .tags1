@@ -10,4 +10,5 @@ learn_with_random_forest	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/anal
 learn_with_linear_svc	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/feature_extractor.rb	/^  def learn_with_linear_svc$/;"	method	line:29
 learn_with_naive_bayes	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/feature_extractor.rb	/^  def learn_with_naive_bayes$/;"	method	line:44
 learn_with_lda	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/feature_extractor.rb	/^  def learn_with_lda$/;"	method	line:62
-predict_questions	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/feature_extractor.rb	/^  def predict_questions(text)$/;"	method	line:78
+predict_question_tags	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/feature_extractor.rb	/^  def predict_question_tags$/;"	method	line:78
+predict_questions	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/feature_extractor.rb	/^  def predict_questions(text)$/;"	method	line:103
