@@ -1,0 +1,14 @@
+@value colors: "./colors.css";
+@value white from colors;
+
+/* react-router-transitionはラッパーにはrelative, 中身にはabsoluteのスタイルをつけておかないと、
+ 遷移時のアニメーションがおかしなことになるためそれの対応 */
+.wrapper {
+  position: relative;
+}
+
+.content {
+  position: absolute;
+  width: 100%;
+  background-color: white;
+}
