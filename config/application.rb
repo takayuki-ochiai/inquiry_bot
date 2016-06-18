@@ -28,6 +28,9 @@ module InquiryBot
     config.paths.add File.join('app', 'analytics'), glob: File.join('**', '*.rb')
     config.autoload_paths += Dir[Rails.root.join('app', 'analytics', '*')]
 
+    # app/apis/ 下の Ruby ファイルが読み込まれるようにする
+    config.paths.add File.join('app', 'apis'), glob: File.join('**', '*.rb')
+    config.autoload_paths += Dir[Rails.root.join('app', 'apis', '*')]
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true

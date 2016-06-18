@@ -15,20 +15,19 @@ gem 'mysql2', '~> 0.3.17'
 # Use slim
 gem 'slim-rails'
 
-# api
-gem 'grape'
-gem 'grape-entity'
-gem 'api-pagination'
-
-# api response
-gem 'active_model_serializers'
-
 # batch いらないかもだが一応
 gem 'whenever', :require => false
 
-# cache いらないと思うが一応
+# cache
 gem 'redis'
 gem 'redis-rails'
+
+# api
+gem 'grape', '0.16.2'
+gem 'grape-entity', '0.5.1'
+
+# api response
+# gem 'active_model_serializers'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -47,6 +46,8 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
+
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
