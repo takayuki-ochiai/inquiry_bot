@@ -21,6 +21,7 @@ end
 CSV.foreach('db/fixtures/development/questions.csv') do |row|
   Question.create(
     answer_id: row[0],
-    content: row[1]
+    content: row[1],
+    is_recommended: row[2]
   )
 end
