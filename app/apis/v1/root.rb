@@ -10,7 +10,14 @@ module V1
       error!({ message: "Server Error"}, 500)
     end
 
-    mount V1::Rooms
-    mount V1::Recipes
+    helpers do
+      # grapeはparamsにjson_param_key_transformでsnake_caseに変換したparamsを取得できない。
+      # このメソッドはsnake_caseに変換したパラメーターをActionController::Parametersにラップして渡してあげるメソッド
+      def action_dispatch_params
+        @action_dispatch_params ||= ActionController::Parameters.new(@env['action_dispatch.request.request_parameters'])
+      end
+    end
+
+    mount V1::Predictor
   end
 end

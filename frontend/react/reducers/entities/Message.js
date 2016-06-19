@@ -7,8 +7,7 @@ const MessageBase = record({
   textColor: '',
   backColor: '',
   avatar: '',
-  duration: 2000,
-  // duration: 100000000,
+  duration: 100000000,
   inbound: false,
 });
 

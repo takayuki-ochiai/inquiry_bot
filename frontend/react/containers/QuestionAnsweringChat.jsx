@@ -1,6 +1,6 @@
 import QuestionAnsweringChat from '../components/organisms/QuestionAnsweringChat.jsx';
 import { connect } from 'react-redux';
-import { addQuestion } from '../actions/';
+import { inquiryBot } from '../actions/';
 
 
 const suggestions = [
@@ -24,7 +24,7 @@ const mapStateToProps = state => (
 const mapDispatchToProps = dispatch => (
   {
     submitValue: value => {
-      dispatch(addQuestion(value));
+      dispatch(inquiryBot(value));
     },
   }
 );

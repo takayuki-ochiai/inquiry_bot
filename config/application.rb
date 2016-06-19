@@ -19,14 +19,15 @@ module InquiryBot
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+    # ライブラリ直下のファイルを読み込む
+    config.autoload_paths += %W(#{config.root}/lib)
 
     # キャッシュにredisを使用する
     config.cache_store = :redis_store, "redis://127.0.0.1:6379/0/inquiry_bot", { expires_in: 90.minutes }
     # config.cache_store = :memory_store, { size: 64.megabytes, :expires_in => 3.minutes }
 
     # app/analytics/ 下のRuby ファイルが読み込まれるようにする
-    config.paths.add File.join('app', 'analytics'), glob: File.join('**', '*.rb')
-    config.autoload_paths += Dir[Rails.root.join('app', 'analytics', '*')]
+    config.autoload_paths += %W(#{config.root}/app/analytics)
 
     # app/apis/ 下の Ruby ファイルが読み込まれるようにする
     config.paths.add File.join('app', 'apis'), glob: File.join('**', '*.rb')

@@ -1,16 +1,77 @@
-import { ROUTER_TRANSITION_ACTIONS, MESSAGE_ACTIONS } from './constants';
+import { ROUTER_TRANSITION_ACTIONS, MESSAGE_ACTIONS, FETCHING_ACITONS } from './constants';
 import { push } from 'react-router-redux';
+import request from 'superagent';
 
+function postQuestion(question) {
+  return new Promise((resolve, reject) => {
+    request
+      .post('http://localhost:3001/api/v1/predictor/questions')
+      // CORS対策
+      .withCredentials()
+      .send({ question })
+      .end((err, reply) => {
+        if (reply.status === 201) {
+          resolve(reply);
+        } else {
+          reject(err);
+        }
+      });
+  });
+}
 
 export const addQuestion = value => (
   {
     type: MESSAGE_ACTIONS.ADD_QUESTION,
     payload: {
       message: value,
-      isQuestion: true,
     },
   }
 );
+
+export const addAnswer = value => (
+  {
+    type: MESSAGE_ACTIONS.ADD_ANSWER,
+    payload: {
+      message: value,
+    },
+  }
+);
+
+export const fetchAnswers = () => (
+  {
+    type: FETCHING_ACITONS.FETCH_ANSWERS,
+  }
+);
+
+
+export const receiveAnswer = answer => (
+  {
+    type: FETCHING_ACITONS.RECEIVE_ANSWER,
+    payload: {
+      message: answer,
+    },
+  }
+);
+
+export const getAnswers = value => {
+  const dispatcher = dispatch => {
+    dispatch(fetchAnswers());
+    postQuestion(value).then(
+      res => {
+        dispatch(receiveAnswer(res.body.answer));
+      }
+    );
+  };
+  return dispatcher;
+};
+
+export const inquiryBot = value => {
+  const dispatcher = dispatch => {
+    dispatch(addQuestion(value));
+    dispatch(getAnswers(value));
+  };
+  return dispatcher;
+};
 
 export const setRouterTransition = type => ({ type });
 
