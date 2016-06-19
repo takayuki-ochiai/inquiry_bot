@@ -15,7 +15,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import { indigo700, redA200 } from 'material-ui/styles/colors';
 
 import LayoutCtrl from './containers/LayoutCtrl';
-import Root from './components/Root';
+import Root from './components/page/Root';
 import store from './store';
 
 

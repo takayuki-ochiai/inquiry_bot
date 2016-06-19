@@ -1,6 +1,16 @@
-import { ROUTER_TRANSITION_ACTIONS } from './constants';
+import { ROUTER_TRANSITION_ACTIONS, MESSAGE_ACTIONS } from './constants';
 import { push } from 'react-router-redux';
 
+
+export const addQuestion = value => (
+  {
+    type: MESSAGE_ACTIONS.ADD_QUESTION,
+    payload: {
+      message: value,
+      isQuestion: true,
+    },
+  }
+);
 
 export const setRouterTransition = type => ({ type });
 

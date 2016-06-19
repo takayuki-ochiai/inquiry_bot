@@ -50,6 +50,7 @@
     "object-assign-deep": "0.0.4",
     "react": "^15.1.0",
     "react-addons-css-transition-group": "^15.1.0",
+    "react-autosuggest": "^3.7.4",
     "react-dom": "^15.1.0",
     "react-motion": "^0.4.3",
     "react-redux": "^4.4.5",
