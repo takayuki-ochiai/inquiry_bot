@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "80da0b43947903219245"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "ee247aaba3c7834c607c"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -36510,7 +36510,7 @@
 	var mapStateToProps = function mapStateToProps(state) {
 	  return {
 	    messages: state.messages.toArray(),
-	    height: '600px'
+	    height: '450px'
 	  };
 	};
 	
@@ -36630,7 +36630,7 @@
 	
 	var muiTheme = (0, _getMuiTheme2.default)({
 	  palette: {
-	    primary1Color: _colors.indigo700,
+	    primary1Color: _colors.grey50,
 	    accent1Color: _colors.redA200
 	  }
 	});
@@ -36710,7 +36710,7 @@
 	        message: payload.message,
 	        backColor: payload.isQuestion ? _colors.lightGreen300 : _colors.grey100,
 	        textColor: payload.isQuestion ? _colors.grey100 : 'black',
-	        avatar: payload.isQuestion ? '' : '/images/elbot.gif',
+	        avatar: payload.isQuestion ? '/images/user.png' : '/images/elbot.gif',
 	        inbound: !payload.isQuestion
 	      });
 	    }
@@ -77728,6 +77728,16 @@
 	
 	var _FlatButton2 = _interopRequireDefault(_FlatButton);
 	
+	var _colors = __webpack_require__(/*! material-ui/styles/colors */ 48);
+	
+	var _questionAnsweringChat = __webpack_require__(/*! ../../../stylesheet/questionAnsweringChat.css */ 510);
+	
+	var _questionAnsweringChat2 = _interopRequireDefault(_questionAnsweringChat);
+	
+	var _autosuggest = __webpack_require__(/*! ../../../stylesheet/autosuggest.css */ 512);
+	
+	var _autosuggest2 = _interopRequireDefault(_autosuggest);
+	
 	var _kuromoji = __webpack_require__(/*! kuromoji */ 499);
 	
 	var _kuromoji2 = _interopRequireDefault(_kuromoji);
@@ -77863,14 +77873,32 @@
 	        'div',
 	        null,
 	        _react2.default.createElement(_Conversation2.default, null),
-	        _react2.default.createElement(_reactAutosuggest2.default, {
-	          suggestions: displaySuggestions,
-	          onSuggestionsUpdateRequested: this.onSuggestionsUpdateRequested,
-	          getSuggestionValue: this.getSuggestionValue,
-	          renderSuggestion: this.renderSuggestion,
-	          inputProps: inputProps
-	        }),
-	        _react2.default.createElement(_FlatButton2.default, { label: '質問する', onTouchTap: this.onTouchTapSubmitButton })
+	        _react2.default.createElement(
+	          'div',
+	          { className: _questionAnsweringChat2.default.inputForm },
+	          _react2.default.createElement(
+	            'div',
+	            { className: _questionAnsweringChat2.default.autoSuggest },
+	            _react2.default.createElement(_reactAutosuggest2.default, {
+	              suggestions: displaySuggestions,
+	              onSuggestionsUpdateRequested: this.onSuggestionsUpdateRequested,
+	              getSuggestionValue: this.getSuggestionValue,
+	              renderSuggestion: this.renderSuggestion,
+	              inputProps: inputProps,
+	              theme: _autosuggest2.default
+	            })
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: _questionAnsweringChat2.default.submitButton },
+	            _react2.default.createElement(_FlatButton2.default, {
+	              label: '質問する',
+	              backgroundColor: _colors.amber400,
+	              primary: true,
+	              onTouchTap: this.onTouchTapSubmitButton
+	            })
+	          )
+	        )
 	      );
 	    }
 	  }]);
@@ -84607,6 +84635,105 @@
 	c.name=m.join("")}if(0<(c.h&16)){m=[];for(k=0;0<(g=h[l++]);)m[k++]=String.fromCharCode(g);c.K=m.join("")}0<(c.h&2)&&(c.C=x(h,0,l)&65535,c.C!==(h[l++]|h[l++]<<8)&&n(Error("invalid header crc16")));d=h[h.length-4]|h[h.length-3]<<8|h[h.length-2]<<16|h[h.length-1]<<24;h.length-l-4-4<512*d&&(f=d);b=new G(h,{index:l,bufferSize:f});c.data=a=b.g();l=b.c;c.L=t=(h[l++]|h[l++]<<8|h[l++]<<16|h[l++]<<24)>>>0;x(a,q,q)!==t&&n(Error("invalid CRC-32 checksum: 0x"+x(a,q,q).toString(16)+" / 0x"+t.toString(16)));c.M=
 	d=(h[l++]|h[l++]<<8|h[l++]<<16|h[l++]<<24)>>>0;(a.length&4294967295)!==d&&n(Error("invalid input size: "+(a.length&4294967295)+" / "+d));this.m.push(c);this.c=l}this.s=!0;var y=this.m,s,M,S=0,T=0,C;s=0;for(M=y.length;s<M;++s)T+=y[s].data.length;if(u){C=new Uint8Array(T);for(s=0;s<M;++s)C.set(y[s].data,S),S+=y[s].data.length}else{C=[];for(s=0;s<M;++s)C[s]=y[s].data;C=Array.prototype.concat.apply([],C)}return C};r("Zlib.Gunzip",$);r("Zlib.Gunzip.prototype.decompress",$.prototype.g);r("Zlib.Gunzip.prototype.getMembers",$.prototype.G);}).call(this); //@ sourceMappingURL=gunzip.min.js.map
 
+
+/***/ },
+/* 509 */
+/*!**************************************************************************************************************************************!*\
+  !*** ./~/css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!./stylesheet/questionAnsweringChat.css ***!
+  \**************************************************************************************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ./../~/css-loader/lib/css-base.js */ 67)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, ".questionAnsweringChat__inputForm___1iaYT {\n  width: 80%;\n  margin: 0 auto;\n  position: relative;\n}\n\n.questionAnsweringChat__autoSuggest___2mPVa {\n  width: 80%;\n  display: inline-block;\n}\n\n.questionAnsweringChat__submitButton___1Ln8K {\n  display: inline-block;\n  position: absolute;\n  top: 0;\n}\n", ""]);
+	
+	// exports
+	exports.locals = {
+		"inputForm": "questionAnsweringChat__inputForm___1iaYT",
+		"autoSuggest": "questionAnsweringChat__autoSuggest___2mPVa",
+		"submitButton": "questionAnsweringChat__submitButton___1Ln8K"
+	};
+
+/***/ },
+/* 510 */
+/*!**********************************************!*\
+  !*** ./stylesheet/questionAnsweringChat.css ***!
+  \**********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(/*! !./../~/css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!./questionAnsweringChat.css */ 509);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(/*! ./../~/style-loader/addStyles.js */ 108)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(true) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept(/*! !./../~/css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!./questionAnsweringChat.css */ 509, function() {
+				var newContent = __webpack_require__(/*! !./../~/css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!./questionAnsweringChat.css */ 509);
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 511 */
+/*!****************************************************************************************************************************!*\
+  !*** ./~/css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!./stylesheet/autosuggest.css ***!
+  \****************************************************************************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ./../~/css-loader/lib/css-base.js */ 67)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, ".autosuggest__input___1l-8b {\n  width: 99%;\n  height: 30px;\n  border: #FFCA28 2px solid;\n}\n\n.autosuggest__suggestion___77GTd {\n  min-height: 35px;\n  list-style: none;\n}\n\n.autosuggest__suggestion___77GTd:hover {\n  background-color: #90CAF9;\n  color: white;\n}\n", ""]);
+	
+	// exports
+	exports.locals = {
+		"input": "autosuggest__input___1l-8b",
+		"suggestion": "autosuggest__suggestion___77GTd"
+	};
+
+/***/ },
+/* 512 */
+/*!************************************!*\
+  !*** ./stylesheet/autosuggest.css ***!
+  \************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(/*! !./../~/css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!./autosuggest.css */ 511);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(/*! ./../~/style-loader/addStyles.js */ 108)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(true) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept(/*! !./../~/css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!./autosuggest.css */ 511, function() {
+				var newContent = __webpack_require__(/*! !./../~/css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!./autosuggest.css */ 511);
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
 
 /***/ }
 /******/ ]);

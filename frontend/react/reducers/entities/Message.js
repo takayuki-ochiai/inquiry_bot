@@ -17,7 +17,7 @@ export default class Message extends MessageBase {
       message: payload.message,
       backColor: payload.isQuestion ? lightGreen300 : grey100,
       textColor: payload.isQuestion ? grey100 : 'black',
-      avatar: payload.isQuestion ? '' : '/images/elbot.gif',
+      avatar: payload.isQuestion ? '/images/user.png' : '/images/elbot.gif',
       inbound: !payload.isQuestion,
     });
   }

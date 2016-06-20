@@ -12,7 +12,7 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import { indigo700, redA200 } from 'material-ui/styles/colors';
+import { grey50, redA200 } from 'material-ui/styles/colors';
 
 import LayoutCtrl from './containers/LayoutCtrl';
 import Root from './components/page/Root';
@@ -35,7 +35,7 @@ const history = syncHistoryWithStore(hashHistory, store, {
 
 const muiTheme = getMuiTheme({
   palette: {
-    primary1Color: indigo700,
+    primary1Color: grey50,
     accent1Color: redA200,
   },
 });

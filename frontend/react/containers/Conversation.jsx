@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 const mapStateToProps = state => (
   {
     messages: state.messages.toArray(),
-    height: '600px',
+    height: '450px',
   }
 );
 

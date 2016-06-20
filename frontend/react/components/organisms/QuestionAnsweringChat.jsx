@@ -2,6 +2,10 @@ import React, { PropTypes } from 'react';
 import Conversation from '../../containers/Conversation.jsx';
 import Autosuggest from 'react-autosuggest';
 import FlatButton from 'material-ui/FlatButton';
+import { amber400 } from 'material-ui/styles/colors';
+import style from '../../../stylesheet/questionAnsweringChat.css';
+import autoSuggestStyle from '../../../stylesheet/autosuggest.css';
+
 import kuromoji from 'kuromoji';
 const builder = kuromoji.builder({
   // 辞書があるパスを指定。
@@ -95,14 +99,26 @@ class QuestionAnsweringChat extends React.Component {
     return (
       <div>
         <Conversation />
-        <Autosuggest
-          suggestions={displaySuggestions}
-          onSuggestionsUpdateRequested={this.onSuggestionsUpdateRequested}
-          getSuggestionValue={this.getSuggestionValue}
-          renderSuggestion={this.renderSuggestion}
-          inputProps={inputProps}
-        />
-        <FlatButton label="質問する" onTouchTap={this.onTouchTapSubmitButton} />
+        <div className={style.inputForm}>
+          <div className={style.autoSuggest}>
+            <Autosuggest
+              suggestions={displaySuggestions}
+              onSuggestionsUpdateRequested={this.onSuggestionsUpdateRequested}
+              getSuggestionValue={this.getSuggestionValue}
+              renderSuggestion={this.renderSuggestion}
+              inputProps={inputProps}
+              theme={autoSuggestStyle}
+            />
+          </div>
+          <div className={style.submitButton}>
+            <FlatButton
+              label="質問する"
+              backgroundColor={amber400}
+              primary
+              onTouchTap={this.onTouchTapSubmitButton}
+            />
+          </div>
+        </div>
       </div>
     );
   }

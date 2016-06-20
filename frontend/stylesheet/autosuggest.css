@@ -1,0 +1,15 @@
+.input {
+  width: 99%;
+  height: 30px;
+  border: #FFCA28 2px solid;
+}
+
+.suggestion {
+  min-height: 35px;
+  list-style: none;
+}
+
+.suggestion:hover {
+  background-color: #90CAF9;
+  color: white;
+}

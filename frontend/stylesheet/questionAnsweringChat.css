@@ -1,0 +1,16 @@
+.inputForm {
+  width: 80%;
+  margin: 0 auto;
+  position: relative;
+}
+
+.autoSuggest {
+  width: 80%;
+  display: inline-block;
+}
+
+.submitButton {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+}
