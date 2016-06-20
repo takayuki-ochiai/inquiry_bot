@@ -24,7 +24,8 @@ builder.build((err, _tokenizer) => {
 // 入力された文章を形態素解析して読みのカタカナのリストとして返します
 function tokenizeToBasicFormReading(text) {
   const readings = tokenizer.tokenize(text)
-    .filter(token => ['名詞', '動詞', '形容詞', '形容動詞'].indexOf(token.pos) !== -1)
+    // .filter(token => ['名詞', '動詞', '形容詞', '形容動詞'].indexOf(token.pos) !== -1)
+    .filter(token => ['名詞', '動詞'].indexOf(token.pos) !== -1)
     .map(token => token.basic_form)
     .map(basicForm => tokenizer.tokenize(basicForm)[0].reading);
 
@@ -74,9 +75,16 @@ class QuestionAnsweringChat extends React.Component {
   }
 
   getSuggestions(readings) {
-    return readings.length === 0 ? [] : this.props.suggestions.filter(suggestion =>
+    const suggestions = readings.length === 0 ? [] : this.props.suggestions.filter(suggestion =>
       suggestion.tags.some(tag => readings.indexOf(tag) !== -1)
     );
+
+    // キーワードが3文字以上でサジェスチョンが5以上表示される場合はレコメンドを表示しない
+    if (readings.length > 2 && suggestions.length > 4) {
+      return [];
+    }
+
+    return suggestions;
   }
 
   getSuggestionValue(suggestion) {

@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "ee247aaba3c7834c607c"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "acf6c8bc3b8681b9f2e5"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -77768,8 +77768,10 @@
 	
 	// 入力された文章を形態素解析して読みのカタカナのリストとして返します
 	function tokenizeToBasicFormReading(text) {
-	  var readings = tokenizer.tokenize(text).filter(function (token) {
-	    return ['名詞', '動詞', '形容詞', '形容動詞'].indexOf(token.pos) !== -1;
+	  var readings = tokenizer.tokenize(text)
+	  // .filter(token => ['名詞', '動詞', '形容詞', '形容動詞'].indexOf(token.pos) !== -1)
+	  .filter(function (token) {
+	    return ['名詞', '動詞'].indexOf(token.pos) !== -1;
 	  }).map(function (token) {
 	    return token.basic_form;
 	  }).map(function (basicForm) {
@@ -77837,11 +77839,18 @@
 	  }, {
 	    key: 'getSuggestions',
 	    value: function getSuggestions(readings) {
-	      return readings.length === 0 ? [] : this.props.suggestions.filter(function (suggestion) {
+	      var suggestions = readings.length === 0 ? [] : this.props.suggestions.filter(function (suggestion) {
 	        return suggestion.tags.some(function (tag) {
 	          return readings.indexOf(tag) !== -1;
 	        });
 	      });
+	
+	      // キーワードが3文字以上でサジェスチョンが5以上表示される場合はレコメンドを表示しない
+	      if (readings.length > 2 && suggestions.length > 4) {
+	        return [];
+	      }
+	
+	      return suggestions;
 	    }
 	  }, {
 	    key: 'getSuggestionValue',

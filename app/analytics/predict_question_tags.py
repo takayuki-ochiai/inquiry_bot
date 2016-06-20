@@ -35,7 +35,7 @@ def predict_questions():
     vectors = vector_train.toarray()
     for i, answer_id in enumerate(question_keys):
         for j, value in enumerate(vectors[i]):
-            if value > 0.30:
+            if value > 0.25:
                 if answer_id in label_important_words_dict:
                     label_important_words_dict[answer_id].append(feature_names[j])
                 else:
