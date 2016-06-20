@@ -17,6 +17,11 @@ class QuestionAnsweringChat extends React.Component {
     this.onTouchTapSubmitButton = this.onTouchTapSubmitButton.bind(this);
   }
 
+  componentWillMount() {
+    // レコメンドに使用する代表的な質問をサーバー側に取りに行く
+    this.props.initialLoading();
+  }
+
   onChange(event, { newValue }) {
     this.setState({
       value: newValue,
@@ -40,18 +45,18 @@ class QuestionAnsweringChat extends React.Component {
     const inputValue = value.trim().toLowerCase();
     const inputLength = inputValue.length;
 
-    return inputLength === 0 ? [] : this.props.suggestions.filter(lang =>
-      lang.name.toLowerCase().slice(0, inputLength) === inputValue
+    return inputLength === 0 ? [] : this.props.suggestions.filter(suggestion =>
+      suggestion.tags.some(tag => tag.indexOf(inputValue) !== -1)
     );
   }
 
   getSuggestionValue(suggestion) {
-    return suggestion.name;
+    return suggestion.content;
   }
 
   renderSuggestion(suggestion) {
     return (
-      <span>{suggestion.name}</span>
+      <span>{suggestion.content}</span>
     );
   }
 
@@ -80,6 +85,7 @@ class QuestionAnsweringChat extends React.Component {
 
 QuestionAnsweringChat.propTypes = {
   submitValue: PropTypes.func.isRequired,
+  initialLoading: PropTypes.func.isRequired,
   suggestions: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,

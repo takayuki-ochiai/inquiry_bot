@@ -10,7 +10,23 @@ function postQuestion(question) {
       .withCredentials()
       .send({ question })
       .end((err, reply) => {
-        if (reply.status === 201) {
+        if (reply.status === 201 || reply.status === 200) {
+          resolve(reply);
+        } else {
+          reject(err);
+        }
+      });
+  });
+}
+
+function getSuggestions() {
+  return new Promise((resolve, reject) => {
+    request
+      .get('http://localhost:3001/api/v1/predictor/suggestions')
+      // CORS対策
+      .withCredentials()
+      .end((err, reply) => {
+        if (reply.status === 201 || reply.status === 200) {
           resolve(reply);
         } else {
           reject(err);
@@ -28,18 +44,18 @@ export const addQuestion = value => (
   }
 );
 
-export const addAnswer = value => (
-  {
-    type: MESSAGE_ACTIONS.ADD_ANSWER,
-    payload: {
-      message: value,
-    },
-  }
-);
+// export const addAnswer = value => (
+//   {
+//     type: MESSAGE_ACTIONS.ADD_ANSWER,
+//     payload: {
+//       message: value,
+//     },
+//   }
+// );
 
 export const fetchAnswers = () => (
   {
-    type: FETCHING_ACITONS.FETCH_ANSWERS,
+    type: FETCHING_ACITONS.FETCH_ANSWER,
   }
 );
 
@@ -53,7 +69,7 @@ export const receiveAnswer = answer => (
   }
 );
 
-export const getAnswers = value => {
+export const getAnswer = value => {
   const dispatcher = dispatch => {
     dispatch(fetchAnswers());
     postQuestion(value).then(
@@ -68,7 +84,35 @@ export const getAnswers = value => {
 export const inquiryBot = value => {
   const dispatcher = dispatch => {
     dispatch(addQuestion(value));
-    dispatch(getAnswers(value));
+    dispatch(getAnswer(value));
+  };
+  return dispatcher;
+};
+
+
+export const fetchSuggestions = () => (
+  {
+    type: FETCHING_ACITONS.FETCH_SUGGESTIONS,
+  }
+);
+
+export const receiveSuggestions = suggestions => (
+  {
+    type: FETCHING_ACITONS.RECEIVE_SUGGESTIONS,
+    payload: {
+      suggestions,
+    },
+  }
+);
+
+export const requireSuggestions = () => {
+  const dispatcher = dispatch => {
+    dispatch(fetchSuggestions());
+    getSuggestions().then(
+      res => {
+        dispatch(receiveSuggestions(res.body.suggestions));
+      }
+    );
   };
   return dispatcher;
 };

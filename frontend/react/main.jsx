@@ -22,7 +22,6 @@ import store from './store';
 // Material UIを使用する場合、ReactがV1.0になるまでは必要らしい
 injectTapEventPlugin();
 
-
 const Layout = props => (
   <LayoutCtrl {...props} />
 );

@@ -3,15 +3,8 @@ import Message from './entities/Message';
 import { MESSAGE_ACTIONS, FETCHING_ACITONS } from '../actions/constants';
 
 const initialStateList = list([]);
-const firstMessage = {
-  message: '質問をどうぞ！',
-  isQuestion: false,
-};
 
-const messageEnt = Message.fromJS(firstMessage);
-
-
-const messages = (state = initialStateList.push(messageEnt), action) => {
+const messages = (state = initialStateList, action) => {
   switch (action.type) {
     case MESSAGE_ACTIONS.ADD_QUESTION: {
       const payload = Object.assign(action.payload, { isQuestion: true });

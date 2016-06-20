@@ -14,6 +14,13 @@ module V1
           { answer: answer }.camelize_keys(:lower)
         end
       end
+
+      resource :suggestions do
+        desc 'レコメンドする代表的な質問を返却します'
+        get '/' do
+          { suggestions: ::Predictor.recommending_questions }.camelize_keys(:lower)
+        end
+      end
     end
   end
 end

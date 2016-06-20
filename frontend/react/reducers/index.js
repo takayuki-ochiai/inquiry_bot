@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import routerReducer from './router';
 import routerTransition from './routerTransition';
 import messages from './messages';
+import suggestions from './suggestions';
 import isFetching from './isFetching';
 
 const todoApp = combineReducers({
@@ -9,6 +10,7 @@ const todoApp = combineReducers({
   routerTransition,
   messages,
   isFetching,
+  suggestions,
 });
 
 export default todoApp;

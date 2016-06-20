@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "256386e43cd51d7fc7f1"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "d89372d21c2621aa5acd"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -18742,8 +18742,10 @@
 	};
 	
 	var FETCHING_ACITONS = exports.FETCHING_ACITONS = {
-	  FETCH_ANSWERS: 'FETCH_ANSWERS',
-	  RECEIVE_ANSWER: 'RECEIVE_ANSWER'
+	  FETCH_ANSWER: 'FETCH_ANSWER',
+	  RECEIVE_ANSWER: 'RECEIVE_ANSWER',
+	  FETCH_SUGGESTIONS: 'FETCH_SUGGESTIONS',
+	  RECEIVE_SUGGESTIONS: 'RECEIVE_SUGGESTIONS'
 	};
 	
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(/*! ./~/react-hot-loader/makeExportsHot.js */ 10); if (makeExportsHot(module, __webpack_require__(/*! react */ 2))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "constants.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
@@ -36751,6 +36753,10 @@
 	
 	var _messages2 = _interopRequireDefault(_messages);
 	
+	var _suggestions = __webpack_require__(/*! ./suggestions */ 483);
+	
+	var _suggestions2 = _interopRequireDefault(_suggestions);
+	
 	var _isFetching = __webpack_require__(/*! ./isFetching */ 482);
 	
 	var _isFetching2 = _interopRequireDefault(_isFetching);
@@ -36761,7 +36767,8 @@
 	  routing: _router2.default,
 	  routerTransition: _routerTransition2.default,
 	  messages: _messages2.default,
-	  isFetching: _isFetching2.default
+	  isFetching: _isFetching2.default,
+	  suggestions: _suggestions2.default
 	});
 	
 	exports.default = todoApp;
@@ -36795,15 +36802,9 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var initialStateList = (0, _immutable.List)([]);
-	var firstMessage = {
-	  message: '質問をどうぞ！',
-	  isQuestion: false
-	};
-	
-	var messageEnt = _Message2.default.fromJS(firstMessage);
 	
 	var messages = function messages() {
-	  var state = arguments.length <= 0 || arguments[0] === undefined ? initialStateList.push(messageEnt) : arguments[0];
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? initialStateList : arguments[0];
 	  var action = arguments[1];
 	
 	  switch (action.type) {
@@ -77755,6 +77756,12 @@
 	  }
 	
 	  _createClass(QuestionAnsweringChat, [{
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      // レコメンドに使用する代表的な質問をサーバー側に取りに行く
+	      this.props.initialLoading();
+	    }
+	  }, {
 	    key: 'onChange',
 	    value: function onChange(event, _ref) {
 	      var newValue = _ref.newValue;
@@ -77786,14 +77793,16 @@
 	      var inputValue = value.trim().toLowerCase();
 	      var inputLength = inputValue.length;
 	
-	      return inputLength === 0 ? [] : this.props.suggestions.filter(function (lang) {
-	        return lang.name.toLowerCase().slice(0, inputLength) === inputValue;
+	      return inputLength === 0 ? [] : this.props.suggestions.filter(function (suggestion) {
+	        return suggestion.tags.some(function (tag) {
+	          return tag.indexOf(inputValue) !== -1;
+	        });
 	      });
 	    }
 	  }, {
 	    key: 'getSuggestionValue',
 	    value: function getSuggestionValue(suggestion) {
-	      return suggestion.name;
+	      return suggestion.content;
 	    }
 	  }, {
 	    key: 'renderSuggestion',
@@ -77801,7 +77810,7 @@
 	      return _react2.default.createElement(
 	        'span',
 	        null,
-	        suggestion.name
+	        suggestion.content
 	      );
 	    }
 	  }, {
@@ -77837,6 +77846,7 @@
 	
 	QuestionAnsweringChat.propTypes = {
 	  submitValue: _react.PropTypes.func.isRequired,
+	  initialLoading: _react.PropTypes.func.isRequired,
 	  suggestions: _react.PropTypes.arrayOf(_react.PropTypes.shape({
 	    name: _react.PropTypes.string.isRequired,
 	    year: _react.PropTypes.number.isRequired
@@ -77862,7 +77872,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.transitionNoAnimation = exports.transitionSlideRight = exports.transitionSlideLeft = exports.transitionFade = exports.transitionPop = exports.transition = exports.setRouterTransition = exports.inquiryBot = exports.getAnswers = exports.receiveAnswer = exports.fetchAnswers = exports.addAnswer = exports.addQuestion = undefined;
+	exports.transitionNoAnimation = exports.transitionSlideRight = exports.transitionSlideLeft = exports.transitionFade = exports.transitionPop = exports.transition = exports.setRouterTransition = exports.requireSuggestions = exports.receiveSuggestions = exports.fetchSuggestions = exports.inquiryBot = exports.getAnswer = exports.receiveAnswer = exports.fetchAnswers = exports.addQuestion = undefined;
 	
 	var _constants = __webpack_require__(/*! ./constants */ 133);
 	
@@ -77879,7 +77889,21 @@
 	    _superagent2.default.post('http://localhost:3001/api/v1/predictor/questions')
 	    // CORS対策
 	    .withCredentials().send({ question: question }).end(function (err, reply) {
-	      if (reply.status === 201) {
+	      if (reply.status === 201 || reply.status === 200) {
+	        resolve(reply);
+	      } else {
+	        reject(err);
+	      }
+	    });
+	  });
+	}
+	
+	function getSuggestions() {
+	  return new Promise(function (resolve, reject) {
+	    _superagent2.default.get('http://localhost:3001/api/v1/predictor/suggestions')
+	    // CORS対策
+	    .withCredentials().end(function (err, reply) {
+	      if (reply.status === 201 || reply.status === 200) {
 	        resolve(reply);
 	      } else {
 	        reject(err);
@@ -77897,18 +77921,18 @@
 	  };
 	};
 	
-	var addAnswer = exports.addAnswer = function addAnswer(value) {
-	  return {
-	    type: _constants.MESSAGE_ACTIONS.ADD_ANSWER,
-	    payload: {
-	      message: value
-	    }
-	  };
-	};
+	// export const addAnswer = value => (
+	//   {
+	//     type: MESSAGE_ACTIONS.ADD_ANSWER,
+	//     payload: {
+	//       message: value,
+	//     },
+	//   }
+	// );
 	
 	var fetchAnswers = exports.fetchAnswers = function fetchAnswers() {
 	  return {
-	    type: _constants.FETCHING_ACITONS.FETCH_ANSWERS
+	    type: _constants.FETCHING_ACITONS.FETCH_ANSWER
 	  };
 	};
 	
@@ -77921,7 +77945,7 @@
 	  };
 	};
 	
-	var getAnswers = exports.getAnswers = function getAnswers(value) {
+	var getAnswer = exports.getAnswer = function getAnswer(value) {
 	  var dispatcher = function dispatcher(dispatch) {
 	    dispatch(fetchAnswers());
 	    postQuestion(value).then(function (res) {
@@ -77934,7 +77958,32 @@
 	var inquiryBot = exports.inquiryBot = function inquiryBot(value) {
 	  var dispatcher = function dispatcher(dispatch) {
 	    dispatch(addQuestion(value));
-	    dispatch(getAnswers(value));
+	    dispatch(getAnswer(value));
+	  };
+	  return dispatcher;
+	};
+	
+	var fetchSuggestions = exports.fetchSuggestions = function fetchSuggestions() {
+	  return {
+	    type: _constants.FETCHING_ACITONS.FETCH_SUGGESTIONS
+	  };
+	};
+	
+	var receiveSuggestions = exports.receiveSuggestions = function receiveSuggestions(suggestions) {
+	  return {
+	    type: _constants.FETCHING_ACITONS.RECEIVE_SUGGESTIONS,
+	    payload: {
+	      suggestions: suggestions
+	    }
+	  };
+	};
+	
+	var requireSuggestions = exports.requireSuggestions = function requireSuggestions() {
+	  var dispatcher = function dispatcher(dispatch) {
+	    dispatch(fetchSuggestions());
+	    getSuggestions().then(function (res) {
+	      dispatch(receiveSuggestions(res.body.suggestions));
+	    });
 	  };
 	  return dispatcher;
 	};
@@ -78008,18 +78057,10 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var suggestions = [{
-	  name: 'C',
-	  year: 1972
-	}, {
-	  name: 'Elm',
-	  year: 2012
-	}];
-	
 	// propsでsuggestionsとsubmitValueを渡さないといけない
 	var mapStateToProps = function mapStateToProps(state) {
 	  return {
-	    suggestions: suggestions
+	    suggestions: state.suggestions
 	  };
 	};
 	
@@ -78027,6 +78068,10 @@
 	  return {
 	    submitValue: function submitValue(value) {
 	      dispatch((0, _actions.inquiryBot)(value));
+	    },
+	    initialLoading: function initialLoading() {
+	      dispatch((0, _actions.receiveAnswer)('質問をどうぞ！'));
+	      dispatch((0, _actions.requireSuggestions)());
 	    }
 	  };
 	};
@@ -79665,7 +79710,8 @@
 	var _immutable = __webpack_require__(/*! immutable */ 71);
 	
 	var initialStateMap = (0, _immutable.Map)({
-	  isAnswerFetching: false
+	  isAnswerFetching: false,
+	  isSuggestionFetching: false
 	});
 	
 	var isFetching = function isFetching() {
@@ -79673,13 +79719,21 @@
 	  var action = arguments[1];
 	
 	  switch (action.type) {
-	    case _constants.FETCHING_ACITONS.FETCH_ANSWERS:
+	    case _constants.FETCHING_ACITONS.FETCH_ANSWER:
 	      {
 	        return state.set('isAnswerFetching', true);
 	      }
 	    case _constants.FETCHING_ACITONS.RECEIVE_ANSWER:
 	      {
 	        return state.set('isAnswerFetching', false);
+	      }
+	    case _constants.FETCHING_ACITONS.FETCH_SUGGESTIONS:
+	      {
+	        return state.set('isSuggestionFetching', true);
+	      }
+	    case _constants.FETCHING_ACITONS.RECEIVE_SUGGESTIONS:
+	      {
+	        return state.set('isSuggestionFetching', false);
 	      }
 	    default:
 	      return state;
@@ -79689,6 +79743,42 @@
 	exports.default = isFetching;
 	
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(/*! ./~/react-hot-loader/makeExportsHot.js */ 10); if (makeExportsHot(module, __webpack_require__(/*! react */ 2))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "isFetching.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../~/webpack/buildin/module.js */ 6)(module)))
+
+/***/ },
+/* 483 */
+/*!***************************************!*\
+  !*** ./react/reducers/suggestions.js ***!
+  \***************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(/*! ./~/react-hot-api/modules/index.js */ 8), RootInstanceProvider = __webpack_require__(/*! ./~/react-hot-loader/RootInstanceProvider.js */ 9), ReactMount = __webpack_require__(/*! react/lib/ReactMount */ 7), React = __webpack_require__(/*! react */ 2); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _constants = __webpack_require__(/*! ../actions/constants */ 133);
+	
+	var suggestions = function suggestions() {
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
+	  var action = arguments[1];
+	
+	  switch (action.type) {
+	    case _constants.FETCHING_ACITONS.RECEIVE_SUGGESTIONS:
+	      {
+	        return action.payload.suggestions;
+	      }
+	    default:
+	      return state;
+	  }
+	};
+	
+	exports.default = suggestions;
+	
+	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(/*! ./~/react-hot-loader/makeExportsHot.js */ 10); if (makeExportsHot(module, __webpack_require__(/*! react */ 2))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "suggestions.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../~/webpack/buildin/module.js */ 6)(module)))
 
 /***/ }

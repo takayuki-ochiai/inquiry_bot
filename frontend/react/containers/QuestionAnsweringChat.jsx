@@ -1,23 +1,11 @@
 import QuestionAnsweringChat from '../components/organisms/QuestionAnsweringChat.jsx';
 import { connect } from 'react-redux';
-import { inquiryBot } from '../actions/';
-
-
-const suggestions = [
-  {
-    name: 'C',
-    year: 1972,
-  },
-  {
-    name: 'Elm',
-    year: 2012,
-  },
-];
+import { inquiryBot, requireSuggestions, receiveAnswer } from '../actions/';
 
 // propsでsuggestionsとsubmitValueを渡さないといけない
 const mapStateToProps = state => (
   {
-    suggestions,
+    suggestions: state.suggestions,
   }
 );
 
@@ -25,6 +13,10 @@ const mapDispatchToProps = dispatch => (
   {
     submitValue: value => {
       dispatch(inquiryBot(value));
+    },
+    initialLoading: () => {
+      dispatch(receiveAnswer('質問をどうぞ！'));
+      dispatch(requireSuggestions());
     },
   }
 );
