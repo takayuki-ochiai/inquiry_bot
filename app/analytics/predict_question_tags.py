@@ -27,15 +27,15 @@ def predict_questions():
     # 正規化されたtfidf値が0.25以上のものをその質問のなかで特徴的な単語として考慮する
     """
     {
-        '77': ['なおし', 'めーる', 'もじばけ'],
-        '1': ['おっと', 'かぞく', 'かーど', 'くれじっと', 'しはらい', 'しよう', 'つま']
+        '77': ['ナオシ', 'メール', 'モジバケ'],
+        '1': ['オット', 'カゾク', 'カード', 'クレジット', 'シハライ', 'シヨウ', 'ツマ']
     }
     """
     label_important_words_dict = {}
     vectors = vector_train.toarray()
     for i, answer_id in enumerate(question_keys):
         for j, value in enumerate(vectors[i]):
-            if value > 0.25:
+            if value > 0.30:
                 if answer_id in label_important_words_dict:
                     label_important_words_dict[answer_id].append(feature_names[j])
                 else:

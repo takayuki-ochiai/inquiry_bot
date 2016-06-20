@@ -2,6 +2,30 @@ import React, { PropTypes } from 'react';
 import Conversation from '../../containers/Conversation.jsx';
 import Autosuggest from 'react-autosuggest';
 import FlatButton from 'material-ui/FlatButton';
+import kuromoji from 'kuromoji';
+const builder = kuromoji.builder({
+  // 辞書があるパスを指定。
+  dicPath: '../../../node_modules/kuromoji/dist/dict',
+});
+
+let tokenizer = null;
+builder.build((err, _tokenizer) => {
+  // 辞書がない場合はエラー
+  if (err) { throw err; }
+
+  // tokenizer.tokenize に文字列を渡すと、その文を形態素解析してくれます。
+  tokenizer = _tokenizer;
+});
+
+// 入力された文章を形態素解析して読みのカタカナのリストとして返します
+function tokenizeToBasicFormReading(text) {
+  const readings = tokenizer.tokenize(text)
+    .filter(token => ['名詞', '動詞', '形容詞', '形容動詞'].indexOf(token.pos) !== -1)
+    .map(token => token.basic_form)
+    .map(basicForm => tokenizer.tokenize(basicForm)[0].reading);
+
+  return readings;
+}
 
 class QuestionAnsweringChat extends React.Component {
   constructor() {
@@ -36,17 +60,18 @@ class QuestionAnsweringChat extends React.Component {
   }
 
   onSuggestionsUpdateRequested({ value }) {
+    // TODO 入力された内容が文章だと、あんまり本筋とは関係ない質問をレコメンドしやがるのでちょっと修正が必要
+    // 助詞とか主語を合わせて何語以上だったらレコメンドを切るとか。
+    // レコメンドしたい質問が5個以上になっちゃったらアウトとか
+    const readings = tokenizeToBasicFormReading(value);
     this.setState({
-      displaySuggestions: this.getSuggestions(value),
+      displaySuggestions: this.getSuggestions(readings),
     });
   }
 
-  getSuggestions(value) {
-    const inputValue = value.trim().toLowerCase();
-    const inputLength = inputValue.length;
-
-    return inputLength === 0 ? [] : this.props.suggestions.filter(suggestion =>
-      suggestion.tags.some(tag => tag.indexOf(inputValue) !== -1)
+  getSuggestions(readings) {
+    return readings.length === 0 ? [] : this.props.suggestions.filter(suggestion =>
+      suggestion.tags.some(tag => readings.indexOf(tag) !== -1)
     );
   }
 
@@ -63,7 +88,7 @@ class QuestionAnsweringChat extends React.Component {
   render() {
     const { value, displaySuggestions } = this.state;
     const inputProps = {
-      placeholder: 'Type a programming language',
+      placeholder: '自由に文章で質問を入れてね！',
       value,
       onChange: this.onChange,
     };

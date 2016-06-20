@@ -1,5 +1,4 @@
 import MeCab
-import cnvk
 ## neologdを使うときはこうする
 mecab = MeCab.Tagger ("-d /usr/local/lib/mecab/dic/mecab-ipadic-neologd")
 
@@ -11,8 +10,6 @@ def morphological_analyze(text):
     while node:
         pos = node.feature.split(',')[0]
         if pos in ['名詞', '動詞', '形容詞', '形容動詞'] and node.feature.split(',')[6] != '*':
-        # if pos == '名詞' or pos == '動詞' or pos == '形容詞' or pos == '形容動詞':
-            # print(node.feature.split(','))
             word = node.feature.split(',')[6]
             words.append(word)
         node = node.next
@@ -25,7 +22,6 @@ def morphological_reading_analyze(text):
         pos = node.feature.split(',')[0]
         if pos in ['名詞', '動詞', '形容詞', '形容動詞'] and node.feature.split(',')[6] != '*':
             word = node.feature.split(',')[7]
-            word = cnvk.convert(word, cnvk.Z_KATA, cnvk.KATA2HIRA)
             words.append(word)
         node = node.next
     return words
