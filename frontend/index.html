@@ -6,10 +6,25 @@
     <!-- Material UIが使用しているフォント  -->
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,500' rel='stylesheet' type='text/css'>
     <link href='./stylesheet/reset.css' rel='stylesheet' type='text/css'>
+    <link href='./graft/stylesheet.css' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="./graft/jquery-1.11.3.js"></script>
+    <script type="text/javascript" src="./graft/index.js"></script>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <div> <!-- QuestionAnsweringChat  -->
+        <div class="conversation"> <!-- Conversation  -->
+          <div class="conversation__messages">
+            <div class="messages__container"> <!-- Messages  -->
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
   <!-- scriptの読み込みを最後にしないと、ReactがTarget container is not a DOM element.みたいなエラーを出して焦るので注意。 -->
-  <script type="text/javascript" src="./dist/bundle.js"></script>
+  <!-- <script type="text/javascript" src="./dist/bundle.js"></script> -->
+
 </html>

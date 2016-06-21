@@ -10,7 +10,8 @@ module V1
       resource :questions do
         desc '入力された質問にふさわしい回答を返却します'
         post '/' do
-          answer = ::Predictor.predict(action_dispatch_params[:question])
+          # answer = ::Predictor.predict(action_dispatch_params[:question])
+          answer = ::Predictor.predict(params[:question])
           { answer: answer }.camelize_keys(:lower)
         end
       end
