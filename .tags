@@ -140,3 +140,32 @@ estimator	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/predictor
 Predictor	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/predictor.rb	/^class Predictor$/;"	class	line:4
 initialize	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/predictor.rb	/^  def initialize(text)$/;"	method	line:6	class:Predictor
 predict	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/predictor.rb	/^  def predict$/;"	method	line:10	class:Predictor
+html	/Users/TakayukiOchiai/railsproject/inquiry_bot/frontend/index.html	/^<html>$/;"	function	line:2
+head	/Users/TakayukiOchiai/railsproject/inquiry_bot/frontend/index.html	/^  <head>$/;"	function	line:3
+meta	/Users/TakayukiOchiai/railsproject/inquiry_bot/frontend/index.html	/^    <meta charset="utf-8">$/;"	function	line:4
+title	/Users/TakayukiOchiai/railsproject/inquiry_bot/frontend/index.html	/^    <title>Hello React!<\/title>$/;"	function	line:5
+link	/Users/TakayukiOchiai/railsproject/inquiry_bot/frontend/index.html	/^    <link href='http:\/\/fonts.googleapis.com\/css?family=Roboto:400,300,500' rel='stylesheet' type='text\/css'>$/;"	function	line:7
+link	/Users/TakayukiOchiai/railsproject/inquiry_bot/frontend/index.html	/^    <link href='.\/stylesheet\/reset.css' rel='stylesheet' type='text\/css'>$/;"	function	line:8
+link	/Users/TakayukiOchiai/railsproject/inquiry_bot/frontend/index.html	/^    <link href='.\/graft\/stylesheet.css' rel='stylesheet' type='text\/css'>$/;"	function	line:9
+script	/Users/TakayukiOchiai/railsproject/inquiry_bot/frontend/index.html	/^    <script type="text\/javascript" src=".\/graft\/jquery-1.11.3.js"><\/script>$/;"	function	line:10
+script	/Users/TakayukiOchiai/railsproject/inquiry_bot/frontend/index.html	/^    <script type="text\/javascript" src=".\/graft\/jquery-autocomplete.js"><\/script>$/;"	function	line:11
+script	/Users/TakayukiOchiai/railsproject/inquiry_bot/frontend/index.html	/^    <script type="text\/javascript" src=".\/graft\/index.js"><\/script>$/;"	function	line:12
+body	/Users/TakayukiOchiai/railsproject/inquiry_bot/frontend/index.html	/^  <body>$/;"	function	line:14
+div	/Users/TakayukiOchiai/railsproject/inquiry_bot/frontend/index.html	/^    <div id="app">$/;"	function	line:15
+div	/Users/TakayukiOchiai/railsproject/inquiry_bot/frontend/index.html	/^      <div class="QuestionAnsweringChat"> <!-- QuestionAnsweringChat  -->$/;"	function	line:16
+div	/Users/TakayukiOchiai/railsproject/inquiry_bot/frontend/index.html	/^        <div class="conversation">$/;"	function	line:17
+div	/Users/TakayukiOchiai/railsproject/inquiry_bot/frontend/index.html	/^          <div class="conversation__messages">$/;"	function	line:18
+div	/Users/TakayukiOchiai/railsproject/inquiry_bot/frontend/index.html	/^            <div class="messages__container">$/;"	function	line:19
+div	/Users/TakayukiOchiai/railsproject/inquiry_bot/frontend/index.html	/^        <div class="questionForm">$/;"	function	line:24
+div	/Users/TakayukiOchiai/railsproject/inquiry_bot/frontend/index.html	/^          <div class="questionForm__input">$/;"	function	line:25
+input	/Users/TakayukiOchiai/railsproject/inquiry_bot/frontend/index.html	/^            <input type="text" name="questions" id="autocomplete" placeholder="自由に文章で質問を入れてね！"\/>$/;"	function	line:26
+div	/Users/TakayukiOchiai/railsproject/inquiry_bot/frontend/index.html	/^          <div class="questionForm__submit">$/;"	function	line:28
+button	/Users/TakayukiOchiai/railsproject/inquiry_bot/frontend/index.html	/^            <button>質問する<\/button>$/;"	function	line:29
+addAnswererMessage	/Users/TakayukiOchiai/railsproject/inquiry_bot/frontend/graft/index.js	/^function addAnswererMessage(text) {$/;"	function	line:1
+addAnswererMessage	/Users/TakayukiOchiai/railsproject/inquiry_bot/frontend/graft/index.js	/^function addAnswererMessage(text) {$/;"	function	line:1
+addQuestionerMessage	/Users/TakayukiOchiai/railsproject/inquiry_bot/frontend/graft/index.js	/^function addQuestionerMessage(text) {$/;"	function	line:16
+addQuestionerMessage	/Users/TakayukiOchiai/railsproject/inquiry_bot/frontend/graft/index.js	/^function addQuestionerMessage(text) {$/;"	function	line:16
+postQuestion	/Users/TakayukiOchiai/railsproject/inquiry_bot/frontend/graft/index.js	/^function postQuestion(question) {$/;"	function	line:30
+postQuestion	/Users/TakayukiOchiai/railsproject/inquiry_bot/frontend/graft/index.js	/^function postQuestion(question) {$/;"	function	line:30
+lookup	/Users/TakayukiOchiai/railsproject/inquiry_bot/frontend/graft/index.js	/^    lookup: function (query, done) {$/;"	function	line:52
+setTimeout	/Users/TakayukiOchiai/railsproject/inquiry_bot/frontend/graft/index.js	/^  setTimeout(function(){$/;"	function	line:73

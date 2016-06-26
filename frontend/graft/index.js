@@ -40,10 +40,40 @@ function postQuestion(question) {
 
 
 $(function(){
+  var ajaxSuggestions;
+  $.get(
+    'http://localhost:3001/api/v1/predictor/suggestions',
+    function(res) {
+      ajaxSuggestions = res.suggestions;
+    }
+  );
+
+  $('#autocomplete').autocomplete({
+    lookup: function (query, done) {
+      var results ={};
+      results.suggestions = ajaxSuggestions.filter(function(result) {
+        return result.tags.some(function(tag) {
+          return tag === query
+        })
+      }).map(function(result) {
+        return {
+          value: result.content,
+          data: ""
+        }
+      })
+      done(results);
+    }
+  });
+
+  $('.questionForm__submit').click(function() {
+    postQuestion($('#autocomplete').val());
+    $('#autocomplete').val("");
+  })
+
   setTimeout(function(){
     addAnswererMessage("質問をどうぞ！");
   }, 1000)
-  setTimeout(function(){
-    postQuestion("ログインできなくなってしまいました");
-  }, 3000)
+  // setTimeout(function(){
+  //   postQuestion("ログインできなくなってしまいました");
+  // }, 3000)
 });

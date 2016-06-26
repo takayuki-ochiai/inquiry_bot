@@ -8,20 +8,31 @@
     <link href='./stylesheet/reset.css' rel='stylesheet' type='text/css'>
     <link href='./graft/stylesheet.css' rel='stylesheet' type='text/css'>
     <script type="text/javascript" src="./graft/jquery-1.11.3.js"></script>
+    <script type="text/javascript" src="./graft/jquery-autocomplete.js"></script>
     <script type="text/javascript" src="./graft/index.js"></script>
   </head>
   <body>
     <div id="app">
-      <div> <!-- QuestionAnsweringChat  -->
-        <div class="conversation"> <!-- Conversation  -->
+      <div class="QuestionAnsweringChat"> <!-- QuestionAnsweringChat  -->
+        <div class="conversation">
           <div class="conversation__messages">
-            <div class="messages__container"> <!-- Messages  -->
+            <div class="messages__container">
+            </div><!-- Messages  -->
+          </div>
+        </div><!-- Conversation  -->
 
-            </div>
-
+        <div class="questionForm">
+          <div class="questionForm__input">
+            <input type="text" name="questions" id="autocomplete" placeholder="自由に文章で質問を入れてね！"/>
+          </div>
+          <div class="questionForm__submit">
+            <button>質問する</button>
           </div>
         </div>
-      </div>
+
+      </div><!-- QuestionAnsweringChat  -->
+
+
     </div>
   </body>
   <!-- scriptの読み込みを最後にしないと、ReactがTarget container is not a DOM element.みたいなエラーを出して焦るので注意。 -->
