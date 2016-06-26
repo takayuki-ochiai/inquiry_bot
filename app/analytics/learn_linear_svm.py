@@ -10,10 +10,13 @@ dictionary = corpora.Dictionary.load_from_text('app/analytics/dictionary.txt')
 
 # 正解の回答IDの配列
 label_train = sys.stdin.readline().rstrip().split(",")
+# 質問の配列
 question_train = sys.stdin.readline().rstrip().split(",")
 
 # 各質問中の名詞、動詞、形容詞、形容動詞が入っている配列in配列
 words_train = list(map(morphological_analyze, question_train))
+
+# あらかじめ作成しておいた辞書を用いて単語群をbag of wordsに変換
 bow_train = list(map(dictionary.doc2bow, words_train))
 
 # 各質問毎の特徴ベクトルの配列in配列を生成する

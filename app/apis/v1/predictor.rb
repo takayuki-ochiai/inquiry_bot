@@ -19,7 +19,7 @@ module V1
       resource :suggestions do
         desc 'レコメンドする代表的な質問を返却します'
         get '/' do
-          { suggestions: ::Predictor.recommending_questions }.camelize_keys(:lower)
+          { suggestions: ::Predictor.suggestions }.camelize_keys(:lower)
         end
       end
     end

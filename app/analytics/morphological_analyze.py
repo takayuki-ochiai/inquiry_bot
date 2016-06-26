@@ -15,6 +15,8 @@ def morphological_analyze(text):
         node = node.next
     return words
 
+# 形態素解析を行い名詞、動詞、形容詞、形容動詞の読み方のみを取り出す
+# 重複した単語は重複した状態のまま表示される
 def morphological_reading_analyze(text):
     node = mecab.parseToNode(text)
     words = []
