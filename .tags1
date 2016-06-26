@@ -4,6 +4,4 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
-Predictor	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/predictor.rb	/^class Predictor$/;"	class	line:4
-initialize	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/predictor.rb	/^  def initialize(text)$/;"	method	line:6	class:Predictor
-predict	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/predictor.rb	/^  def predict$/;"	method	line:10	class:Predictor
+Question	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/models/question.rb	/^class Question < ActiveRecord::Base$/;"	class	line:1

@@ -11,12 +11,11 @@ class PredictorPreprocessor
     Open3.capture3("python app/analytics/dictionary.py", stdin_data: texts)
   end
 
-  # 回答ごとに重要なキーワードの読みの配列をハッシュ化します。
-  # 作成されたタグは一定時間キャッシュします。
+  # 回答ごとに重要なキーワードの読みの配列をタグとしてハッシュ化します。
+  # 作成された回答とタグの組み合わせは一定時間キャッシュします。
+  # @return [Array] id, content, tagsをキーにするHashを要素とする配列
   def self.suggestions
     # 回答IDごとの設問の内容をすべて連結したハッシュを作成する
-    # この方法は別で使う
-    # ハッシュをJSON化してシリアライズしてPythonに渡して機械学習する
     answer_id_content_hash = Question.pluck(:answer_id, :content).reduce({}) do |result, array|
       if result.has_key?(array[0])
         result[array[0]] = result[array[0]] + array[1]
@@ -48,6 +47,7 @@ class PredictorPreprocessor
 
   # 線形SVMを使って回答と設問の間の関係を学習させます。
   # 学習した結果はシリアライズして保存しておきます。
+  # @return [nil] 戻り値なし
   def self.learn_linear_svm
     answer_id_and_content = Question.pluck(:answer_id, :content)
     answer_id_and_content.map{|array| array[0].to_s}.join(',')

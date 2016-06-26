@@ -107,10 +107,6 @@ PredictorPreprocessor	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analyti
 create_dictionary	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/feature_extractor.rb	/^  def self.create_dictionary$/;"	singleton method	line:8	class:PredictorPreprocessor
 predict_question_tags	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/feature_extractor.rb	/^  def self.predict_question_tags$/;"	singleton method	line:17	class:PredictorPreprocessor
 learn_linear_svm	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/feature_extractor.rb	/^  def self.learn_linear_svm$/;"	singleton method	line:43
-PredictorPreprocessor	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/predictor_preprocessor.rb	/^class PredictorPreprocessor$/;"	class	line:5
-create_dictionary	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/predictor_preprocessor.rb	/^  def self.create_dictionary$/;"	singleton method	line:8	class:PredictorPreprocessor
-predict_question_tags	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/predictor_preprocessor.rb	/^  def self.predict_question_tags$/;"	singleton method	line:16	class:PredictorPreprocessor
-learn_linear_svm	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/predictor_preprocessor.rb	/^  def self.learn_linear_svm$/;"	singleton method	line:42
 sys	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/learn_linear_svm.py	/^import sys$/;"	namespace	line:1
 corpora	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/learn_linear_svm.py	/^from gensim import corpora, matutils$/;"	namespace	line:2
 matutils	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/learn_linear_svm.py	/^from gensim import corpora, matutils$/;"	namespace	line:2
@@ -137,6 +133,12 @@ words	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/predictor.py	
 bow	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/predictor.py	/^bow = dictionary.doc2bow(words)$/;"	variable	line:10
 dense	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/predictor.py	/^dense = list(matutils.corpus2dense([bow], num_terms=len(dictionary)).T[0])$/;"	variable	line:11
 estimator	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/predictor.py	/^estimator = joblib.load('app\/analytics\/linear_svm.pkl')$/;"	variable	line:13
-Predictor	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/predictor.rb	/^class Predictor$/;"	class	line:4
-initialize	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/predictor.rb	/^  def initialize(text)$/;"	method	line:6	class:Predictor
-predict	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/predictor.rb	/^  def predict$/;"	method	line:10	class:Predictor
+Predictor	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/predictor.rb	/^class Predictor$/;"	class	line:5
+predict	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/predictor.rb	/^  def self.predict(question)$/;"	singleton method	line:9	class:Predictor
+suggestions	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/predictor.rb	/^  def self.suggestions$/;"	singleton method	line:16	class:Predictor
+PredictorPreprocessor	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/predictor_preprocessor.rb	/^class PredictorPreprocessor$/;"	class	line:5
+create_dictionary	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/predictor_preprocessor.rb	/^  def self.create_dictionary$/;"	singleton method	line:8	class:PredictorPreprocessor
+suggestions	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/predictor_preprocessor.rb	/^  def self.suggestions$/;"	singleton method	line:17	class:PredictorPreprocessor
+learn_linear_svm	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/analytics/predictor_preprocessor.rb	/^  def self.learn_linear_svm$/;"	singleton method	line:51
+Answer	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/models/answer.rb	/^class Answer < ActiveRecord::Base$/;"	class	line:1
+Question	/Users/TakayukiOchiai/railsproject/inquiry_bot/app/models/question.rb	/^class Question < ActiveRecord::Base$/;"	class	line:1

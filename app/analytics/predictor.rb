@@ -4,8 +4,10 @@ require 'open3'
 
 class Predictor
   # 入力された文章の内容から１つの回答を推測して返します。
-  def self.predict(text)
-    answer_id = Open3.capture3('python app/analytics/predictor.py', stdin_data: text)[0]
+  # @param [String] question 質問文
+  # @return [String] 入力された質問から推測された回答内容
+  def self.predict(question)
+    answer_id = Open3.capture3('python app/analytics/predictor.py', stdin_data: question)[0]
     Answer.find(answer_id).content
   end
 
