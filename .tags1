@@ -4,11 +4,16 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
-addAnswererMessage	/Users/TakayukiOchiai/railsproject/inquiry_bot/frontend/graft/index.js	/^function addAnswererMessage(text) {$/;"	function	line:1
-addAnswererMessage	/Users/TakayukiOchiai/railsproject/inquiry_bot/frontend/graft/index.js	/^function addAnswererMessage(text) {$/;"	function	line:1
-addQuestionerMessage	/Users/TakayukiOchiai/railsproject/inquiry_bot/frontend/graft/index.js	/^function addQuestionerMessage(text) {$/;"	function	line:16
-addQuestionerMessage	/Users/TakayukiOchiai/railsproject/inquiry_bot/frontend/graft/index.js	/^function addQuestionerMessage(text) {$/;"	function	line:16
-postQuestion	/Users/TakayukiOchiai/railsproject/inquiry_bot/frontend/graft/index.js	/^function postQuestion(question) {$/;"	function	line:30
-postQuestion	/Users/TakayukiOchiai/railsproject/inquiry_bot/frontend/graft/index.js	/^function postQuestion(question) {$/;"	function	line:30
-lookup	/Users/TakayukiOchiai/railsproject/inquiry_bot/frontend/graft/index.js	/^    lookup: function (query, done) {$/;"	function	line:52
-setTimeout	/Users/TakayukiOchiai/railsproject/inquiry_bot/frontend/graft/index.js	/^  setTimeout(function(){$/;"	function	line:73
+kuromoji	/Users/TakayukiOchiai/railsproject/inquiry_bot/frontend/graft/index.js	/^var kuromoji = require('kuromoji');$/;"	variable	line:6
+builder	/Users/TakayukiOchiai/railsproject/inquiry_bot/frontend/graft/index.js	/^var builder = kuromoji.builder({$/;"	variable	line:7
+tokenizer	/Users/TakayukiOchiai/railsproject/inquiry_bot/frontend/graft/index.js	/^var tokenizer = null;$/;"	variable	line:11
+tokenizeToBasicFormReading	/Users/TakayukiOchiai/railsproject/inquiry_bot/frontend/graft/index.js	/^function tokenizeToBasicFormReading(text) {$/;"	function	line:21
+tokenizeToBasicFormReading	/Users/TakayukiOchiai/railsproject/inquiry_bot/frontend/graft/index.js	/^function tokenizeToBasicFormReading(text) {$/;"	function	line:21
+addAnswererMessage	/Users/TakayukiOchiai/railsproject/inquiry_bot/frontend/graft/index.js	/^function addAnswererMessage(text) {$/;"	function	line:32
+addAnswererMessage	/Users/TakayukiOchiai/railsproject/inquiry_bot/frontend/graft/index.js	/^function addAnswererMessage(text) {$/;"	function	line:32
+addQuestionerMessage	/Users/TakayukiOchiai/railsproject/inquiry_bot/frontend/graft/index.js	/^function addQuestionerMessage(text) {$/;"	function	line:48
+addQuestionerMessage	/Users/TakayukiOchiai/railsproject/inquiry_bot/frontend/graft/index.js	/^function addQuestionerMessage(text) {$/;"	function	line:48
+postQuestion	/Users/TakayukiOchiai/railsproject/inquiry_bot/frontend/graft/index.js	/^function postQuestion(question) {$/;"	function	line:63
+postQuestion	/Users/TakayukiOchiai/railsproject/inquiry_bot/frontend/graft/index.js	/^function postQuestion(question) {$/;"	function	line:63
+lookup	/Users/TakayukiOchiai/railsproject/inquiry_bot/frontend/graft/index.js	/^    lookup: function (query, done) {$/;"	function	line:85
+setTimeout	/Users/TakayukiOchiai/railsproject/inquiry_bot/frontend/graft/index.js	/^  setTimeout(function(){$/;"	function	line:108
