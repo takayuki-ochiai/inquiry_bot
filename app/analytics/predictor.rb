@@ -11,20 +11,9 @@ class Predictor
 
   # 質問内容のレコメンドに使う質問と、質問内の重要語句のタグをハッシュ化した構造を生成します。
   # 生成に２〜３秒かかるので、一度生成したものは１日はキャッシュして使用します。
-  def self.recommending_questions
+  def self.suggestions
     Rails.cache.fetch('recommending_questions', expires_in: 24.hours) do
-      question_tags = PredictorPreprocessor.predict_question_tags
-      questions = Question.recommended.pluck(:answer_id, :content)
-
-      recommended_questions = questions.map do |question|
-        {
-          id: question[0],
-          content: question[1],
-          tags: question_tags[question[0].to_s]
-        }
-      end
-
-      recommended_questions
+      PredictorPreprocessor.suggestions
     end
   end
 end

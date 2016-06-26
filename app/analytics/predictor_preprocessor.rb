@@ -11,9 +11,9 @@ class PredictorPreprocessor
     Open3.capture3("python app/analytics/dictionary.py", stdin_data: texts)
   end
 
-  # 回答IDごとに重要なキーワードの読みの配列をハッシュ化します。
+  # 回答ごとに重要なキーワードの読みの配列をハッシュ化します。
   # 作成されたタグは一定時間キャッシュします。
-  def self.predict_question_tags
+  def self.suggestions
     # 回答IDごとの設問の内容をすべて連結したハッシュを作成する
     # この方法は別で使う
     # ハッシュをJSON化してシリアライズしてPythonに渡して機械学習する
@@ -26,15 +26,24 @@ class PredictorPreprocessor
       result
     end
 
-    important_words_hash = Open3.popen3("python app/analytics/predict_question_tags.py") do |stdin, stdout, stderr, wait_thr|
+    predict_question_tags = Open3.popen3("python app/analytics/predict_question_tags.py") do |stdin, stdout, stderr, wait_thr|
       # Rubyのハッシュのkeysとvaluesは要素の順序が保持される
       stdin.puts answer_id_content_hash.keys.join(',')
       stdin.puts answer_id_content_hash.values.join(',')
       stdin.close
-      # puts stdout.read
       JSON.parse(stdout.read)
     end
-    important_words_hash
+
+    questions = Question.recommended.pluck(:answer_id, :content)
+
+    suggestions = questions.map do |question|
+      {
+        id: question[0],
+        content: question[1],
+        tags: predict_question_tags[question[0].to_s]
+      }
+    end
+    suggestions
   end
 
   # 線形SVMを使って回答と設問の間の関係を学習させます。
