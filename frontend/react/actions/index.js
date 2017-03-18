@@ -2,10 +2,13 @@ import { ROUTER_TRANSITION_ACTIONS, MESSAGE_ACTIONS, FETCHING_ACITONS } from './
 import { push } from 'react-router-redux';
 import request from 'superagent';
 
+/**
+ * @param hoge
+ * hogehoge
+ **/
 function postQuestion(question) {
   return new Promise((resolve, reject) => {
-    request
-      .post('http://localhost:3001/api/v1/predictor/questions')
+    request.post('http://localhost:3001/api/v1/predictor/questions')
       // CORS対策
       .withCredentials()
       .send({ question })
@@ -21,11 +24,9 @@ function postQuestion(question) {
 
 function getSuggestions() {
   return new Promise((resolve, reject) => {
-    request
-      .get('http://localhost:3001/api/v1/predictor/suggestions')
+    request.get('http://localhost:3001/api/v1/predictor/suggestions')
       // CORS対策
-      .withCredentials()
-      .end((err, reply) => {
+      .withCredentials().end((err, reply) => {
         if (reply.status === 201 || reply.status === 200) {
           resolve(reply);
         } else {
@@ -35,14 +36,12 @@ function getSuggestions() {
   });
 }
 
-export const addQuestion = value => (
-  {
-    type: MESSAGE_ACTIONS.ADD_QUESTION,
-    payload: {
-      message: value,
-    },
-  }
-);
+export const addQuestion = value => ({
+  type: MESSAGE_ACTIONS.ADD_QUESTION,
+  payload: {
+    message: value,
+  },
+});
 
 // export const addAnswer = value => (
 //   {
@@ -53,30 +52,21 @@ export const addQuestion = value => (
 //   }
 // );
 
-export const fetchAnswers = () => (
-  {
-    type: FETCHING_ACITONS.FETCH_ANSWER,
-  }
-);
+export const fetchAnswers = () => ({ type: FETCHING_ACITONS.FETCH_ANSWER });
 
-
-export const receiveAnswer = answer => (
-  {
-    type: FETCHING_ACITONS.RECEIVE_ANSWER,
-    payload: {
-      message: answer,
-    },
-  }
-);
+export const receiveAnswer = answer => ({
+  type: FETCHING_ACITONS.RECEIVE_ANSWER,
+  payload: {
+    message: answer,
+  },
+});
 
 export const getAnswer = value => {
   const dispatcher = dispatch => {
     dispatch(fetchAnswers());
-    postQuestion(value).then(
-      res => {
-        dispatch(receiveAnswer(res.body.answer));
-      }
-    );
+    postQuestion(value).then(res => {
+      dispatch(receiveAnswer(res.body.answer));
+    });
   };
   return dispatcher;
 };
@@ -89,30 +79,21 @@ export const inquiryBot = value => {
   return dispatcher;
 };
 
+export const fetchSuggestions = () => ({ type: FETCHING_ACITONS.FETCH_SUGGESTIONS });
 
-export const fetchSuggestions = () => (
-  {
-    type: FETCHING_ACITONS.FETCH_SUGGESTIONS,
-  }
-);
-
-export const receiveSuggestions = suggestions => (
-  {
-    type: FETCHING_ACITONS.RECEIVE_SUGGESTIONS,
-    payload: {
-      suggestions,
-    },
-  }
-);
+export const receiveSuggestions = suggestions => ({
+  type: FETCHING_ACITONS.RECEIVE_SUGGESTIONS,
+  payload: {
+    suggestions,
+  },
+});
 
 export const requireSuggestions = () => {
   const dispatcher = dispatch => {
     dispatch(fetchSuggestions());
-    getSuggestions().then(
-      res => {
-        dispatch(receiveSuggestions(res.body.suggestions));
-      }
-    );
+    getSuggestions().then(res => {
+      dispatch(receiveSuggestions(res.body.suggestions));
+    });
   };
   return dispatcher;
 };

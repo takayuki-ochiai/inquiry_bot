@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "c4f88fbab31132cdef36"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "d0de7e3190ebc381bc0b"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -42972,6 +42972,10 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	/**
+	 * @param hoge
+	 * hogehoge
+	 **/
 	function postQuestion(question) {
 	  return new Promise(function (resolve, reject) {
 	    _superagent2.default.post('http://localhost:3001/api/v1/predictor/questions')
@@ -43019,9 +43023,7 @@
 	// );
 	
 	var fetchAnswers = exports.fetchAnswers = function fetchAnswers() {
-	  return {
-	    type: _constants.FETCHING_ACITONS.FETCH_ANSWER
-	  };
+	  return { type: _constants.FETCHING_ACITONS.FETCH_ANSWER };
 	};
 	
 	var receiveAnswer = exports.receiveAnswer = function receiveAnswer(answer) {
@@ -43052,9 +43054,7 @@
 	};
 	
 	var fetchSuggestions = exports.fetchSuggestions = function fetchSuggestions() {
-	  return {
-	    type: _constants.FETCHING_ACITONS.FETCH_SUGGESTIONS
-	  };
+	  return { type: _constants.FETCHING_ACITONS.FETCH_SUGGESTIONS };
 	};
 	
 	var receiveSuggestions = exports.receiveSuggestions = function receiveSuggestions(suggestions) {

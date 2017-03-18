@@ -1,7 +1,6 @@
 import { Record as record } from 'immutable';
 import { lightGreen300, grey100 } from 'material-ui/styles/colors';
 
-
 const MessageBase = record({
   message: '',
   textColor: '',
