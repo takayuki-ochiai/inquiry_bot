@@ -108,6 +108,8 @@ GEM
       schash (~> 0.1.0)
       specinfra (>= 2.64.0, < 3.0.0)
       thor
+    itamae-plugin-recipe-yk_mecab (0.1.2)
+      itamae (~> 1.9.0)
     jbuilder (2.5.0)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
@@ -295,6 +297,7 @@ DEPENDENCIES
   grape (= 0.16.2)
   grape-entity (= 0.5.1)
   itamae
+  itamae-plugin-recipe-yk_mecab
   jbuilder (~> 2.0)
   jquery-rails
   launchy (~> 2.4.2)

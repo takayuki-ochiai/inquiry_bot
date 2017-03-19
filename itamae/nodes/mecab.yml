@@ -1,0 +1,5 @@
+home_dir: '/home/suidenOTI/'
+mecab:
+  user: 'suidenOTI'
+  hatena: ''  # If you dont't need hatena dictionary.
+  wikipedia: '' # If you don't need wikipedia dictionary.

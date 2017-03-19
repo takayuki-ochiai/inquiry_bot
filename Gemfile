@@ -92,4 +92,6 @@ group :development, :test do
 
   # プロビジョニングツールとしてitamaeを導入
   gem 'itamae'
+  # mecabを入れる用
+  gem 'itamae-plugin-recipe-yk_mecab'
 end
