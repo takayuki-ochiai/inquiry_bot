@@ -11,6 +11,12 @@ class PredictorPreprocessor
     Open3.capture3("python app/analytics/dictionary.py", stdin_data: texts)
   end
 
+  URI = 'http://0.0.0.0:8080/'
+  CONN = Faraday::Connection.new(url: URI) do |builder|
+    # Net/HTTP をアダプターに使う
+    builder.use Faraday::Adapter::NetHttp
+  end
+
   # 回答ごとに重要なキーワードの読みの配列をタグとしてハッシュ化します。
   # 作成された回答とタグの組み合わせは一定時間キャッシュします。
   # @return [Array] id, content, tagsをキーにするHashを要素とする配列
@@ -25,13 +31,15 @@ class PredictorPreprocessor
       result
     end
 
-    predict_question_tags = Open3.popen3("python app/analytics/predict_question_tags.py") do |stdin, stdout, stderr, wait_thr|
-      # Rubyのハッシュのkeysとvaluesは要素の順序が保持される
-      stdin.puts answer_id_content_hash.keys.join(',')
-      stdin.puts answer_id_content_hash.values.join(',')
-      stdin.close
-      JSON.parse(stdout.read)
+    response = CONN.post('question_tags') do |req|
+      req.headers['Content-Type'] = 'application/json'
+      req.body = {
+        keys: answer_id_content_hash.keys,
+        values: answer_id_content_hash.values
+      }.to_json
     end
+
+    predict_question_tags = JSON.parse(response.body)
 
     questions = Question.recommended.pluck(:answer_id, :content)
 

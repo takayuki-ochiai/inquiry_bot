@@ -27,7 +27,7 @@ gem 'grape', '0.16.2'
 gem 'grape-entity', '0.5.1'
 
 # クロスオリジン対応
-gem 'rack-cors', :require => 'rack/cors', group: [:development, :test, :production]
+gem 'rack-cors', :require => 'rack/cors'
 
 # api response
 # gem 'active_model_serializers'
@@ -50,8 +50,16 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+# プロビジョニングツールとしてitamaeを導入
+gem 'itamae'
+# mecabを入れる用
+gem 'itamae-plugin-recipe-yk_mecab'
 
+# api client
+gem 'faraday'
 
+# .envから環境変数を読み込む
+gem 'dotenv-rails'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -90,8 +98,4 @@ group :development, :test do
   gem "rspec-rails", "~> 3.1.0"
   gem "factory_girl_rails", "~> 4.4.1"
 
-  # プロビジョニングツールとしてitamaeを導入
-  gem 'itamae'
-  # mecabを入れる用
-  gem 'itamae-plugin-recipe-yk_mecab'
 end

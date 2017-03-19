@@ -11,12 +11,10 @@ import json
 
 from sklearn.metrics.pairwise import cosine_similarity
 
-def predict_question_tags():
+def predict_question_tags(question_keys, question_texts):
     # tf-idf化
     #The defaults for min_df and max_df are 1 and 1.0, respectively. This basically says "If my term is found in only 1 document, then it's ignored. Similarly if it's found in all documents (100% or 1.0) then it's ignored."
     vectorizer = TfidfVectorizer(analyzer=morphological_reading_analyze)
-    question_keys =  sys.stdin.readline().rstrip().split(",")
-    question_texts = sys.stdin.readline().rstrip().split(",")
     # チャット欄に入力された文書と、各回答に紐づく質問をinjectしたテキストについて正規化したtfidfベクトルの配列に変換する
     vector_train = vectorizer.fit_transform(question_texts)
 
@@ -62,4 +60,4 @@ def predict_question_tags():
     # return ','.join(list(map(lambda x:x[0], predict_questions)))
 
 # sys.stdout(predict_questions())
-sys.stdout.write(predict_question_tags())
+# sys.stdout.write(predict_question_tags())
