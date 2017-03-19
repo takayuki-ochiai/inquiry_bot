@@ -27,7 +27,7 @@ gem 'grape', '0.16.2'
 gem 'grape-entity', '0.5.1'
 
 # クロスオリジン対応
-gem 'rack-cors', :require => 'rack/cors', group: [:development, :test]
+gem 'rack-cors', :require => 'rack/cors', group: [:development, :test, :production]
 
 # api response
 # gem 'active_model_serializers'
